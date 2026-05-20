@@ -1602,29 +1602,92 @@
       }
     })();
 
-    // Voice sample playback — uses AudioContext to avoid browser autoplay restrictions
-    // AudioContext is unlocked on the first user click and stays unlocked for async playback
+    // Voice sample playback — multi-tier: static MP3 → ElevenLabs API → Web Speech API
     let audioCtx = null;
     let currentSource = null;
     let currentCard = null;
     let isPlaying = false;
+    let speechUtterance = null;
+
     const voiceSamples = {
       akash: "Welcome, operative. I'm Akash, your CRV training officer. We're going to train using the exact protocols developed by the Stanford Research Institute. Ready to begin?",
       lyra: "Hello. I'm Lyra. Before we start, take a breath. The signal is always there. My job is to help you learn to listen. Let's find it together.",
       veil: "The coordinate is a doorway. What's on the other side isn't always what you expect. I'm Veil. Stay alert, stay curious. Anomalous data is not noise. It's signal."
     };
 
+    // Voice preferences for Web Speech API fallback — best-effort voice matching
+    const speechVoicePrefs = {
+      akash: { gender: 'male', lang: 'en', pitch: 0.9, rate: 0.92 },
+      lyra:  { gender: 'female', lang: 'en', pitch: 1.1, rate: 0.88 },
+      veil:  { gender: 'male', lang: 'en', pitch: 0.8, rate: 0.85 }
+    };
+
+    function pickSpeechVoice(prefs) {
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return null;
+      // Prefer high-quality voices (not "compact" or "network"), match gender hint by name
+      const genderHints = prefs.gender === 'female'
+        ? ['samantha','karen','victoria','kate','fiona','moira','zira','female']
+        : ['daniel','alex','james','tom','fred','david','male'];
+      const english = voices.filter(v => v.lang.startsWith('en'));
+      // Try to match gender
+      for (const hint of genderHints) {
+        const match = english.find(v => v.name.toLowerCase().includes(hint));
+        if (match) return match;
+      }
+      // Fallback: any English voice, prefer non-compact
+      return english.find(v => !v.name.toLowerCase().includes('compact')) || english[0] || voices[0];
+    }
+
+    function stopCurrentAudio() {
+      if (currentSource) {
+        try { currentSource.stop(); } catch(e) {}
+        currentSource = null;
+      }
+      if (speechUtterance) {
+        window.speechSynthesis.cancel();
+        speechUtterance = null;
+      }
+      isPlaying = false;
+    }
+
     function resetPlayHint(cardEl, instructor) {
       cardEl.classList.remove('playing');
       cardEl.querySelector('.play-hint').innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> CLICK TO HEAR ' + instructor.toUpperCase();
     }
 
+    function setPlayingHint(hint) {
+      hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg> PLAYING... (CLICK TO STOP)';
+    }
+
+    // Fallback: use browser's built-in speech synthesis
+    function playSpeechFallback(instructor, cardEl, hint) {
+      if (!isPlaying || currentCard !== cardEl) return;
+      const prefs = speechVoicePrefs[instructor] || speechVoicePrefs.akash;
+      const utter = new SpeechSynthesisUtterance(voiceSamples[instructor]);
+      const voice = pickSpeechVoice(prefs);
+      if (voice) utter.voice = voice;
+      utter.pitch = prefs.pitch;
+      utter.rate = prefs.rate;
+      utter.lang = 'en-US';
+      speechUtterance = utter;
+      setPlayingHint(hint);
+      utter.onend = () => {
+        if (currentCard === cardEl) {
+          resetPlayHint(cardEl, instructor);
+          currentSource = null;
+          speechUtterance = null;
+          currentCard = null;
+          isPlaying = false;
+        }
+      };
+      window.speechSynthesis.speak(utter);
+    }
+
     function playVoiceSample(instructor, cardEl) {
       // Stop current audio if playing
-      if (currentSource) {
-        try { currentSource.stop(); } catch(e) {}
-        currentSource = null;
-        isPlaying = false;
+      if (currentSource || speechUtterance) {
+        stopCurrentAudio();
         if (currentCard) currentCard.classList.remove('playing');
         if (currentCard === cardEl) {
           resetPlayHint(cardEl, instructor);
@@ -1633,7 +1696,7 @@
         }
       }
 
-      // Create or resume AudioContext on user gesture — this is the key fix
+      // Create or resume AudioContext on user gesture
       if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
       if (audioCtx.state === 'suspended') { audioCtx.resume(); }
 
@@ -1643,6 +1706,7 @@
       const hint = cardEl.querySelector('.play-hint');
       hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg> LOADING...';
 
+      // Tier 1: Try ElevenLabs API via psionicassist.com
       fetch('https://psionicassist.com/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1654,12 +1718,12 @@
       })
       .then(buffer => audioCtx.decodeAudioData(buffer))
       .then(audioBuffer => {
-        if (!isPlaying || currentCard !== cardEl) return; // user clicked stop during fetch
+        if (!isPlaying || currentCard !== cardEl) return;
         const source = audioCtx.createBufferSource();
         source.buffer = audioBuffer;
         source.connect(audioCtx.destination);
         currentSource = source;
-        hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg> PLAYING... (CLICK TO STOP)';
+        setPlayingHint(hint);
         source.onended = () => {
           if (currentCard === cardEl) {
             resetPlayHint(cardEl, instructor);
@@ -1670,12 +1734,16 @@
         };
         source.start(0);
       })
-      .catch((err) => {
-        console.error('Voice playback error:', err);
-        resetPlayHint(cardEl, instructor);
-        currentCard = null;
-        isPlaying = false;
+      .catch(() => {
+        // Tier 2: Fall back to Web Speech API
+        playSpeechFallback(instructor, cardEl, hint);
       });
+    }
+
+    // Pre-load speech synthesis voices (some browsers load them async)
+    if (window.speechSynthesis) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
     }
   </script>
 
