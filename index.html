@@ -747,14 +747,22 @@
     .instructor-card.veil::before { background: linear-gradient(90deg, #3C3489, #7F77DD); }
     .instructor-card.veil:hover { border-color: rgba(var(--purple-rgb),0.3); box-shadow: 0 8px 40px rgba(var(--purple-rgb),0.1); }
 
+    /* ── CARD HEADER: AVATAR + NAME SIDE-BY-SIDE ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
     /* ── INSTRUCTOR AVATARS (IMAGE-BASED) ── */
     .instructor-avatar {
-      width: 64px;
-      height: 64px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
-      margin-bottom: 20px;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
     .instructor-avatar img {
       width: 100%;
@@ -784,17 +792,22 @@
     .play-hint svg { opacity: 0.6; }
     .instructor-card:hover .play-hint svg { opacity: 1; }
 
+    .card-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
     .instructor-name {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 0;
     }
     .instructor-title {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 0;
     }
     .akash .instructor-title { color: var(--accent); }
     .lyra .instructor-title { color: var(--green); }
@@ -925,6 +938,149 @@
     .feature-card:nth-child(6) .feature-icon { background: rgba(var(--green-rgb),0.08); border: 1px solid rgba(var(--green-rgb),0.15); color: var(--green); }
     .feature-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
     .feature-card p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+    /* ── PRICING ── */
+    .pricing-section { padding: 48px 0 64px; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      max-width: 1080px;
+      margin: 40px auto 0;
+    }
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(var(--accent-rgb),0.25);
+    }
+    .pricing-card-featured {
+      border: 1px solid rgba(var(--accent-rgb),0.4);
+      box-shadow: 0 0 32px rgba(var(--accent-rgb),0.08);
+      background: linear-gradient(180deg, rgba(var(--accent-rgb),0.04), var(--surface));
+    }
+    .pricing-card-asset {
+      border: 1px solid rgba(var(--purple-rgb),0.25);
+      background: linear-gradient(180deg, rgba(var(--purple-rgb),0.03), var(--surface));
+    }
+    .pricing-tier-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #0e7490, #22d3ee);
+      color: var(--bg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .pricing-tier-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .pricing-card-featured .pricing-tier-label { color: var(--accent); }
+    .pricing-card-asset .pricing-tier-label { color: var(--purple); }
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .pricing-amount {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--text-1);
+      line-height: 1;
+    }
+    .pricing-period {
+      font-size: 13px;
+      color: var(--text-3);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .pricing-tagline {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .pricing-features {
+      list-style: none;
+      margin: 0 0 24px;
+      padding: 0;
+      flex: 1;
+    }
+    .pricing-features li {
+      font-size: 13px;
+      color: var(--text-2);
+      padding: 9px 0;
+      padding-left: 22px;
+      position: relative;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(var(--accent-rgb),0.15);
+      border: 1px solid rgba(var(--accent-rgb),0.4);
+    }
+    .pricing-features li::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 17px;
+      width: 4px;
+      height: 6px;
+      border: solid var(--accent);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .pricing-card-asset .pricing-features li::before {
+      background: rgba(var(--purple-rgb),0.15);
+      border-color: rgba(var(--purple-rgb),0.4);
+    }
+    .pricing-card-asset .pricing-features li::after { border-color: var(--purple); }
+    .pricing-feature-callout {
+      font-style: italic;
+      color: var(--text-3) !important;
+      font-size: 12px !important;
+    }
+    .pricing-cta {
+      width: 100%;
+      justify-content: center;
+    }
+    .pricing-footnote {
+      max-width: 640px;
+      margin: 36px auto 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-3);
+      line-height: 1.6;
+      font-style: italic;
+    }
 
     /* ── CTA ── */
     .cta-section {
@@ -1089,8 +1245,9 @@
     <div class="nav-links">
       <a href="#instructors">Instructors</a>
       <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
       <a href="https://psionicresearch.com" target="_blank">Research</a>
-      <a href="https://psionicassist.com/app" class="nav-cta">Start Training Free</a>
+      <a href="https://app.psionictraining.com/login" class="nav-cta">Start Training Free</a>
     </div>
   </nav>
 
@@ -1105,7 +1262,7 @@
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        NOW IN BETA — FREE ACCESS
+        FREE TIER LIVE · OPERATIVE & ASSET AVAILABLE
       </div>
       <h1>
         Train Your Mind<br>
@@ -1115,7 +1272,7 @@
         The first AI-guided remote viewing platform. Three specialized instructors coach you through CIA-validated CRV protocols with real targets, scored sessions, and adaptive feedback.
       </p>
       <div class="hero-actions">
-        <a href="https://psionicassist.com/app" class="btn btn-primary">
+        <a href="https://app.psionictraining.com/login" class="btn btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           Start Your First Session
         </a>
@@ -1296,11 +1453,15 @@
 
       <div class="instructor-grid">
         <div class="instructor-card akash fade-in" onclick="playVoiceSample('akash', this)">
-          <div class="instructor-avatar">
-            <img src="./assets/akash.png" alt="Akash - CRV Training Officer" loading="lazy">
+          <div class="card-header">
+            <div class="instructor-avatar">
+              <img src="./assets/akash.png" alt="Akash - CRV Training Officer" loading="lazy">
+            </div>
+            <div class="card-header-text">
+              <div class="instructor-name">Akash</div>
+              <div class="instructor-title">CRV Training Officer</div>
+            </div>
           </div>
-          <div class="instructor-name">Akash</div>
-          <div class="instructor-title">CRV Training Officer</div>
           <p class="instructor-desc">
             Structured, precise, by-the-book. Akash trains you in the exact same protocols developed by the Stanford Research Institute and refined by military intelligence programs. No mysticism, just methodology.
           </p>
@@ -1315,18 +1476,22 @@
           </div>
         </div>
         <div class="instructor-card lyra fade-in" onclick="playVoiceSample('lyra', this)">
-          <div class="instructor-avatar">
-            <img src="./assets/lyra.png" alt="Lyra - Consciousness Guide" loading="lazy">
+          <div class="card-header">
+            <div class="instructor-avatar">
+              <img src="./assets/lyra.png" alt="Lyra - Consciousness Guide" loading="lazy">
+            </div>
+            <div class="card-header-text">
+              <div class="instructor-name">Lyra</div>
+              <div class="instructor-title">Signal Coherence Specialist</div>
+            </div>
           </div>
-          <div class="instructor-name">Lyra</div>
-          <div class="instructor-title">Consciousness Guide</div>
           <p class="instructor-desc">
-            Intuitive, perceptive, deeply attuned. Lyra focuses on the inner experience of remote viewing, helping you develop the awareness and sensitivity that protocols alone cannot teach.
+            Calibration before performance. Lyra runs short coherence drills that settle the nervous system and sharpen first-impression signal. A Lyra drill in the 30 minutes before an Akash session boosts every score that follows.
           </p>
           <div class="instructor-tags">
-            <span class="instructor-tag">Intuitive</span>
-            <span class="instructor-tag">Awareness</span>
-            <span class="instructor-tag">Inner Work</span>
+            <span class="instructor-tag">Coherence Drills</span>
+            <span class="instructor-tag">AOL Detection</span>
+            <span class="instructor-tag">Signal vs Noise</span>
           </div>
           <div class="play-hint">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -1334,18 +1499,22 @@
           </div>
         </div>
         <div class="instructor-card veil fade-in" onclick="playVoiceSample('veil', this)">
-          <div class="instructor-avatar">
-            <img src="./assets/veil.png" alt="Veil - Contact Specialist" loading="lazy">
+          <div class="card-header">
+            <div class="instructor-avatar">
+              <img src="./assets/veil.png" alt="Veil - Contact Specialist" loading="lazy">
+            </div>
+            <div class="card-header-text">
+              <div class="instructor-name">Veil</div>
+              <div class="instructor-title">Anomalous Phenomena Analyst</div>
+            </div>
           </div>
-          <div class="instructor-name">Veil</div>
-          <div class="instructor-title">Contact Specialist</div>
           <p class="instructor-desc">
-            Enigmatic, boundary-pushing, unorthodox. Veil specializes in the frontier of consciousness research, including UAP contact protocols and liminal perception training.
+            Veil works at the edge of the documented dataset. PURSUE files, contact protocols, anomalous craft RV. Access is earned, not bought: 21 sessions, 50% average accuracy, and 5 Lyra calibrations unlock his channel.
           </p>
           <div class="instructor-tags">
-            <span class="instructor-tag">UAP Protocols</span>
-            <span class="instructor-tag">Liminal</span>
-            <span class="instructor-tag">Advanced</span>
+            <span class="instructor-tag">PURSUE Files</span>
+            <span class="instructor-tag">Contact Protocols</span>
+            <span class="instructor-tag">Skill-Walled</span>
           </div>
           <div class="play-hint">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -1424,15 +1593,15 @@
           <div class="feature-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
-          <h3>XP & Progression</h3>
-          <p>Earn experience points, unlock ranks, build streaks. Gamified progression that keeps you training.</p>
+          <h3>XP, Ranks, Combo Bonus</h3>
+          <p>Earn XP, climb seven ranks, build streaks. Calibrate with Lyra before training Akash for a +10% combo bonus on every score.</p>
         </div>
         <div class="feature-card fade-in">
           <div class="feature-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
           </div>
-          <h3>Session Analytics</h3>
-          <p>Track your accuracy over time, identify your strongest dimensions, and monitor your development.</p>
+          <h3>Per-Instructor Bond Stats</h3>
+          <p>Akash sessions, Lyra calibrations, Veil progress each tracked separately. See your relationship with every instructor develop.</p>
         </div>
         <div class="feature-card fade-in">
           <div class="feature-icon">
@@ -1445,13 +1614,77 @@
     </div>
   </section>
 
+  <!-- Pricing -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <p class="section-label fade-in">Plans</p>
+      <h2 class="section-title fade-in">Three Tiers. Real Skill at Every One.</h2>
+      <p class="section-sub fade-in">
+        Free to start. Upgrade when calibration and unlimited sessions become the bottleneck.
+      </p>
+      <div class="pricing-grid">
+
+        <!-- FREE -->
+        <div class="pricing-card fade-in">
+          <div class="pricing-tier-label">Initiate</div>
+          <div class="pricing-price"><span class="pricing-amount">Free</span></div>
+          <p class="pricing-tagline">Start training today. No card required.</p>
+          <ul class="pricing-features">
+            <li>3 Akash CRV sessions per week</li>
+            <li>1 Lyra Coherence Drill per week</li>
+            <li>Last 5 sessions visible in history</li>
+            <li>Text-only instructor coaching</li>
+            <li>Full 6-dimension scoring</li>
+          </ul>
+          <a href="https://app.psionictraining.com/login" class="btn btn-ghost pricing-cta">Start Free</a>
+        </div>
+
+        <!-- OPERATIVE -->
+        <div class="pricing-card pricing-card-featured fade-in">
+          <div class="pricing-tier-badge">Most Popular</div>
+          <div class="pricing-tier-label">Operative</div>
+          <div class="pricing-price"><span class="pricing-amount">$19</span><span class="pricing-period">/month</span></div>
+          <p class="pricing-tagline">For serious daily training.</p>
+          <ul class="pricing-features">
+            <li>Unlimited Akash CRV sessions</li>
+            <li>Unlimited Lyra Coherence Drills</li>
+            <li>Full unlimited session history</li>
+            <li>Voice instructor playback</li>
+            <li>+10% XP combo bonus (Lyra → Akash within 30 min)</li>
+            <li>Achievement tracking + rank progression</li>
+          </ul>
+          <a href="https://app.psionictraining.com/login" class="btn btn-primary pricing-cta">Start as Operative</a>
+        </div>
+
+        <!-- ASSET -->
+        <div class="pricing-card pricing-card-asset fade-in">
+          <div class="pricing-tier-label">Asset</div>
+          <div class="pricing-price"><span class="pricing-amount">$39</span><span class="pricing-period">/month</span></div>
+          <p class="pricing-tagline">Earn access to Veil's channel.</p>
+          <ul class="pricing-features">
+            <li>Everything in Operative</li>
+            <li>Veil access — when you earn it</li>
+            <li>PURSUE files + contact protocols</li>
+            <li>Anomalous craft RV training</li>
+            <li class="pricing-feature-callout">Skill wall: 21 sessions + 50% avg accuracy + 5 Lyra calibrations to unlock</li>
+          </ul>
+          <a href="https://app.psionictraining.com/login" class="btn btn-ghost pricing-cta">Start as Asset</a>
+        </div>
+
+      </div>
+      <p class="pricing-footnote fade-in">
+        Veil's skill wall is a credibility commitment. We won't sell you access to advanced work before the foundational signal is stable. That's the protocol.
+      </p>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section" id="signup">
     <div class="container">
       <div class="cta-card fade-in">
         <h2>Ready to See What Your Mind Can Do?</h2>
-        <p>Start with 3 free sessions. No credit card required. Choose your instructor and begin training immediately.</p>
-        <a href="https://psionicassist.com/app" class="btn btn-primary" style="margin-bottom:24px; display:inline-flex;">
+        <p>Three free Akash sessions per week. One Lyra calibration. No credit card. Pick your instructor and start.</p>
+        <a href="https://app.psionictraining.com/login" class="btn btn-primary" style="margin-bottom:24px; display:inline-flex;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           Start Free Training
         </a>
@@ -1461,7 +1694,7 @@
             <input type="email" name="fields[email]" placeholder="your@email.com" required>
             <button type="submit">Subscribe</button>
           </form>
-          <p class="form-note">No spam. Unsubscribe anytime. We send from akash@psionicassist.com.</p>
+          <p class="form-note">No spam. Unsubscribe anytime. Sent from the Psionic Training team.</p>
         </div>
       </div>
     </div>
@@ -1471,10 +1704,10 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-links">
-        <a href="https://psionicassist.com">Psionic Assist</a>
+        <a href="https://app.psionictraining.com">Sign in</a>
         <a href="https://psionicresearch.com">Psionic Research</a>
-        <a href="https://psionicassist.com/terms.html">Terms</a>
-        <a href="https://psionicresearch.com/privacy">Privacy</a>
+        <a href="https://app.psionictraining.com/terms">Terms</a>
+        <a href="https://app.psionictraining.com/privacy">Privacy</a>
       </div>
       <p class="footer-copy">
         &copy; 2026 Human Capital Development Inc. All rights reserved.
@@ -1602,51 +1835,22 @@
       }
     })();
 
-    // Voice sample playback — multi-tier: static MP3 → ElevenLabs API → Web Speech API
+    // Voice sample playback — static MP3 → ElevenLabs API (no browser fallback)
     let audioCtx = null;
     let currentSource = null;
     let currentCard = null;
     let isPlaying = false;
-    let speechUtterance = null;
 
     const voiceSamples = {
       akash: "Welcome, operative. I'm Akash, your CRV training officer. We're going to train using the exact protocols developed by the Stanford Research Institute. Ready to begin?",
-      lyra: "Hello. I'm Lyra. Before we start, take a breath. The signal is always there. My job is to help you learn to listen. Let's find it together.",
-      veil: "The coordinate is a doorway. What's on the other side isn't always what you expect. I'm Veil. Stay alert, stay curious. Anomalous data is not noise. It's signal."
+      lyra: "Hello, I'm Lyra. Before we start, take a breath. The signal is always there, my job is to help you learn to listen. Let's find it together.",
+      veil: "The coordinate is a doorway, and what's on the other side isn't always what you expect. I'm Veil. Stay alert, stay curious, anomalous data is not noise, it's signal."
     };
-
-    // Voice preferences for Web Speech API fallback — best-effort voice matching
-    const speechVoicePrefs = {
-      akash: { gender: 'male', lang: 'en', pitch: 0.9, rate: 0.92 },
-      lyra:  { gender: 'female', lang: 'en', pitch: 1.1, rate: 0.88 },
-      veil:  { gender: 'male', lang: 'en', pitch: 0.8, rate: 0.85 }
-    };
-
-    function pickSpeechVoice(prefs) {
-      const voices = window.speechSynthesis.getVoices();
-      if (!voices.length) return null;
-      // Prefer high-quality voices (not "compact" or "network"), match gender hint by name
-      const genderHints = prefs.gender === 'female'
-        ? ['samantha','karen','victoria','kate','fiona','moira','zira','female']
-        : ['daniel','alex','james','tom','fred','david','male'];
-      const english = voices.filter(v => v.lang.startsWith('en'));
-      // Try to match gender
-      for (const hint of genderHints) {
-        const match = english.find(v => v.name.toLowerCase().includes(hint));
-        if (match) return match;
-      }
-      // Fallback: any English voice, prefer non-compact
-      return english.find(v => !v.name.toLowerCase().includes('compact')) || english[0] || voices[0];
-    }
 
     function stopCurrentAudio() {
       if (currentSource) {
         try { currentSource.stop(); } catch(e) {}
         currentSource = null;
-      }
-      if (speechUtterance) {
-        window.speechSynthesis.cancel();
-        speechUtterance = null;
       }
       isPlaying = false;
     }
@@ -1660,33 +1864,17 @@
       hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg> PLAYING... (CLICK TO STOP)';
     }
 
-    // Fallback: use browser's built-in speech synthesis
-    function playSpeechFallback(instructor, cardEl, hint) {
-      if (!isPlaying || currentCard !== cardEl) return;
-      const prefs = speechVoicePrefs[instructor] || speechVoicePrefs.akash;
-      const utter = new SpeechSynthesisUtterance(voiceSamples[instructor]);
-      const voice = pickSpeechVoice(prefs);
-      if (voice) utter.voice = voice;
-      utter.pitch = prefs.pitch;
-      utter.rate = prefs.rate;
-      utter.lang = 'en-US';
-      speechUtterance = utter;
-      setPlayingHint(hint);
-      utter.onend = () => {
-        if (currentCard === cardEl) {
-          resetPlayHint(cardEl, instructor);
-          currentSource = null;
-          speechUtterance = null;
-          currentCard = null;
-          isPlaying = false;
-        }
-      };
-      window.speechSynthesis.speak(utter);
+    function showVoiceError(hint, cardEl, instructor) {
+      hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> VOICE TEMPORARILY UNAVAILABLE';
+      cardEl.classList.remove('playing');
+      isPlaying = false;
+      currentCard = null;
+      setTimeout(() => resetPlayHint(cardEl, instructor), 3000);
     }
 
     function playVoiceSample(instructor, cardEl) {
       // Stop current audio if playing
-      if (currentSource || speechUtterance) {
+      if (currentSource) {
         stopCurrentAudio();
         if (currentCard) currentCard.classList.remove('playing');
         if (currentCard === cardEl) {
@@ -1706,15 +1894,22 @@
       const hint = cardEl.querySelector('.play-hint');
       hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg> LOADING...';
 
-      // Tier 1: Try ElevenLabs API via psionicassist.com
-      fetch('https://psionicassist.com/api/tts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: voiceSamples[instructor], instructor: instructor })
-      })
-      .then(r => {
-        if (!r.ok) throw new Error('TTS failed: ' + r.status);
+      // Try static MP3 first, then ElevenLabs API
+      const mp3Url = './assets/voice-' + instructor + '.mp3';
+      fetch(mp3Url).then(r => {
+        if (!r.ok) throw new Error('No MP3');
         return r.arrayBuffer();
+      })
+      .catch(() => {
+        // Fallback: ElevenLabs API via app.psionictraining.com
+        return fetch('https://app.psionictraining.com/api/tts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: voiceSamples[instructor], instructor: instructor })
+        }).then(r => {
+          if (!r.ok) throw new Error('TTS failed: ' + r.status);
+          return r.arrayBuffer();
+        });
       })
       .then(buffer => audioCtx.decodeAudioData(buffer))
       .then(audioBuffer => {
@@ -1735,15 +1930,9 @@
         source.start(0);
       })
       .catch(() => {
-        // Tier 2: Fall back to Web Speech API
-        playSpeechFallback(instructor, cardEl, hint);
+        // No fallback to internal voice — show clean error
+        showVoiceError(hint, cardEl, instructor);
       });
-    }
-
-    // Pre-load speech synthesis voices (some browsers load them async)
-    if (window.speechSynthesis) {
-      window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
     }
   </script>
 
