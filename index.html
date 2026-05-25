@@ -558,6 +558,51 @@
       background: rgba(var(--accent-rgb), 0.08);
       color: var(--accent);
     }
+    .terminal-line .tag.aol {
+      background: rgba(255,180,90,0.12);
+      color: rgba(255,200,120,0.95);
+    }
+    .voice-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin: 0 4px 1px 6px;
+      vertical-align: middle;
+      box-shadow: 0 0 6px var(--accent);
+      animation: voicePulse 1.4s ease-in-out infinite;
+    }
+    @keyframes voicePulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.85); }
+      50%      { opacity: 1;   transform: scale(1.15); }
+    }
+    .terminal-voicebar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.06);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.85;
+    }
+    .terminal-voicebar .vb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .terminal-voicebar .vb-mute-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(74,222,128,0.85);
+      box-shadow: 0 0 6px rgba(74,222,128,0.6);
+    }
     @keyframes typeIn {
       0% { opacity: 0; transform: translateX(-4px); }
       100% { opacity: 1; transform: translateX(0); }
@@ -795,19 +840,31 @@
     .card-header-text {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
+    }
+    .instructor-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+      opacity: 0.7;
     }
     .instructor-name {
       font-size: 22px;
       font-weight: 700;
-      margin-bottom: 0;
+      margin: 0;
+      line-height: 1.15;
     }
     .instructor-title {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 0;
+      margin: 2px 0 0;
+      line-height: 1.3;
     }
     .akash .instructor-title { color: var(--accent); }
     .lyra .instructor-title { color: var(--green); }
@@ -1325,7 +1382,9 @@
               <img src="./assets/akash.png" alt="Akash - CRV Training Officer" loading="lazy">
             </div>
             <div class="card-header-text">
+              <div class="instructor-label">Codename</div>
               <div class="instructor-name">Akash</div>
+              <div class="instructor-label" style="margin-top:6px;">Designation</div>
               <div class="instructor-title">CRV Training Officer</div>
             </div>
           </div>
@@ -1348,7 +1407,9 @@
               <img src="./assets/lyra.png" alt="Lyra - Consciousness Guide" loading="lazy">
             </div>
             <div class="card-header-text">
+              <div class="instructor-label">Codename</div>
               <div class="instructor-name">Lyra</div>
+              <div class="instructor-label" style="margin-top:6px;">Designation</div>
               <div class="instructor-title">Signal Coherence Specialist</div>
             </div>
           </div>
@@ -1371,7 +1432,9 @@
               <img src="./assets/veil.png" alt="Veil - Contact Specialist" loading="lazy">
             </div>
             <div class="card-header-text">
+              <div class="instructor-label">Codename</div>
               <div class="instructor-name">Veil</div>
+              <div class="instructor-label" style="margin-top:6px;">Designation</div>
               <div class="instructor-title">Anomalous Phenomena Analyst</div>
             </div>
           </div>
@@ -1462,10 +1525,10 @@
             TARGET COORDINATE: <span id="coordDisplay">--------</span>
           </div>
           <div class="terminal-phase-label">
-            <span id="phaseLabel1">PHASE 1</span>
-            <span id="phaseLabel2">PHASE 2</span>
-            <span id="phaseLabel3">PHASE 3</span>
-            <span id="phaseLabel4">PHASE 4</span>
+            <span id="phaseLabel1">INITIAL</span>
+            <span id="phaseLabel2">SENSORY</span>
+            <span id="phaseLabel3">DIMENSIONAL</span>
+            <span id="phaseLabel4">CONCEPTUAL</span>
           </div>
           <div class="terminal-phase-bar">
             <div class="terminal-phase-pip" id="pip1"><div class="fill"></div></div>
@@ -1474,13 +1537,18 @@
             <div class="terminal-phase-pip" id="pip4"><div class="fill"></div></div>
           </div>
           <div class="terminal-impressions" id="impressionArea">
-            <div class="terminal-line" id="line0"><span class="prompt">AKASH:</span> <span class="impression-text">Focus on the coordinate. Let impressions arrive naturally.</span></div>
+            <div class="terminal-line" id="line0"><span class="prompt">AKASH<span class="voice-dot"></span>:</span> <span class="impression-text">Focus on the coordinate. Let impressions arrive naturally.</span></div>
             <div class="terminal-line" id="line1"><span class="prompt">&gt;</span> <span class="impression-text">smooth surface... curved edges</span> <span class="tag">SHAPE</span></div>
             <div class="terminal-line" id="line2"><span class="prompt">&gt;</span> <span class="impression-text">blue-green color... reflective, bright</span> <span class="tag">COLOR</span></div>
             <div class="terminal-line" id="line3"><span class="prompt">&gt;</span> <span class="impression-text">cool temperature... wet or damp</span> <span class="tag">TEXTURE</span></div>
             <div class="terminal-line" id="line4"><span class="prompt">&gt;</span> <span class="impression-text">motion downward... flowing, continuous</span> <span class="tag">MOTION</span></div>
-            <div class="terminal-line" id="line5"><span class="prompt">&gt;</span> <span class="impression-text">massive scale... outdoors, open space</span> <span class="tag">SCALE</span></div>
+            <div class="terminal-line" id="line5"><span class="prompt">&gt;</span> <span class="impression-text">looks like a sprinkler... wait, that's analysis</span> <span class="tag aol">AOL CAUGHT</span></div>
             <div class="terminal-line" id="line6"><span class="prompt">&gt;</span> <span class="impression-text">natural formation... water feature... ancient</span> <span class="tag">CONCEPT</span></div>
+          </div>
+          <div class="terminal-voicebar">
+            <span class="vb-item"><span class="vb-mute-dot"></span> Akash · voice on</span>
+            <span class="vb-item">▶ replay</span>
+            <span class="vb-item">⏻ mute</span>
           </div>
           <div class="terminal-score" id="scoreArea">
             <div class="score-ring">
