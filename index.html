@@ -420,306 +420,265 @@
       line-height: 1.6;
     }
 
-    /* ── LIVE SESSION PREVIEW ── */
+    /* ── APP MOCKUP PREVIEW ── */
     .session-preview-section { padding: 48px 0 64px; }
-    .session-terminal {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #08080f;
+    .app-mockup-wrap { max-width: 400px; margin: 0 auto; }
+    .app-mockup {
+      background: #07070e;
       border: 1px solid rgba(var(--accent-rgb), 0.15);
-      border-radius: 16px;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 0 60px rgba(var(--accent-rgb), 0.06), 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 0 60px rgba(var(--accent-rgb), 0.06), 0 24px 64px rgba(0,0,0,0.6);
+      user-select: none;
     }
-    .terminal-header {
+    .mockup-statusbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
-      background: rgba(var(--accent-rgb), 0.04);
-      border-bottom: 1px solid rgba(var(--accent-rgb), 0.1);
+      padding: 10px 20px 6px;
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-2);
     }
-    .terminal-dots {
-      display: flex;
-      gap: 6px;
-    }
-    .terminal-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-    }
-    .terminal-dot:nth-child(1) { background: #ff5f57; }
-    .terminal-dot:nth-child(2) { background: #ffbd2e; }
-    .terminal-dot:nth-child(3) { background: #28ca41; }
-    .terminal-title {
+    .mockup-statusbar-time {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      color: var(--text-3);
-      letter-spacing: 0.1em;
-    }
-    .terminal-status {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .terminal-status-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: dotPulse 2s ease-in-out infinite;
-    }
-    .terminal-body {
-      padding: 24px;
-      min-height: 320px;
-      position: relative;
-    }
-    .terminal-coord {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: var(--text-3);
-      margin-bottom: 20px;
-    }
-    .terminal-coord span {
-      color: var(--accent);
       font-weight: 600;
-      font-size: 18px;
-      letter-spacing: 0.15em;
     }
-    .terminal-phase-bar {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 24px;
-    }
-    .terminal-phase-pip {
-      flex: 1;
-      height: 3px;
-      border-radius: 2px;
-      background: rgba(var(--accent-rgb), 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .terminal-phase-pip .fill {
+    .mockup-statusbar-icons { display: flex; align-items: center; gap: 6px; }
+    .mockup-statusbar-icons svg { opacity: 0.65; }
+    .mockup-panels { position: relative; height: 400px; overflow: hidden; }
+    .mockup-panel {
       position: absolute;
       inset: 0;
-      background: var(--accent);
-      border-radius: 2px;
-      transform: scaleX(0);
-      transform-origin: left;
-    }
-    .terminal-phase-pip.active .fill {
-      animation: phaseFill 3s ease-in-out forwards;
-    }
-    .terminal-phase-pip.done .fill {
-      transform: scaleX(1);
-    }
-    .terminal-phase-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .terminal-phase-label span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      color: var(--text-3);
-      text-transform: uppercase;
-    }
-    .terminal-phase-label span.active-label {
-      color: var(--accent);
-    }
-    @keyframes phaseFill {
-      0% { transform: scaleX(0); }
-      100% { transform: scaleX(1); }
-    }
-    .terminal-impressions {
-      min-height: 140px;
-    }
-    .terminal-line {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: var(--text-2);
-      line-height: 2;
-      opacity: 0;
-    }
-    .terminal-line.typed {
-      opacity: 1;
-      animation: typeIn 0.5s ease-out;
-    }
-    .terminal-line .prompt {
-      color: var(--accent);
-      margin-right: 8px;
-    }
-    .terminal-line .impression-text {
-      color: var(--text-1);
-    }
-    .terminal-line .tag {
-      font-size: 10px;
-      padding: 1px 6px;
-      border-radius: 4px;
-      margin-left: 8px;
-      background: rgba(var(--accent-rgb), 0.08);
-      color: var(--accent);
-    }
-    .terminal-line .tag.aol {
-      background: rgba(255,180,90,0.12);
-      color: rgba(255,200,120,0.95);
-    }
-    .voice-dot {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin: 0 4px 1px 6px;
-      vertical-align: middle;
-      box-shadow: 0 0 6px var(--accent);
-      animation: voicePulse 1.4s ease-in-out infinite;
-    }
-    @keyframes voicePulse {
-      0%, 100% { opacity: 0.4; transform: scale(0.85); }
-      50%      { opacity: 1;   transform: scale(1.15); }
-    }
-    .terminal-voicebar {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 14px;
-      padding-top: 10px;
-      border-top: 1px dashed rgba(255,255,255,0.06);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      opacity: 0.85;
-    }
-    .terminal-voicebar .vb-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .terminal-voicebar .vb-mute-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(74,222,128,0.85);
-      box-shadow: 0 0 6px rgba(74,222,128,0.6);
-    }
-    @keyframes typeIn {
-      0% { opacity: 0; transform: translateX(-4px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
-    .terminal-cursor {
-      display: inline-block;
-      width: 8px;
-      height: 16px;
-      background: var(--accent);
-      animation: cursorBlink 1s step-end infinite;
-      vertical-align: middle;
-      margin-left: 2px;
-    }
-    @keyframes cursorBlink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-    .terminal-score {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(var(--accent-rgb), 0.1);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      opacity: 0;
-    }
-    .terminal-score.visible {
-      opacity: 1;
-      animation: typeIn 0.6s ease-out;
-    }
-    .score-ring {
-      width: 56px;
-      height: 56px;
-      position: relative;
-    }
-    .score-ring svg {
-      transform: rotate(-90deg);
-    }
-    .score-ring circle {
-      fill: none;
-      stroke-width: 4;
-    }
-    .score-ring .score-bg {
-      stroke: rgba(var(--accent-rgb), 0.1);
-    }
-    .score-ring .score-fill {
-      stroke: var(--accent);
-      stroke-dasharray: 150.8;
-      stroke-dashoffset: 150.8;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 1.5s ease-out;
-    }
-    .score-ring .score-fill.animate {
-      stroke-dashoffset: 37.7;
-    }
-    .score-ring .score-num {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .score-details {
-      flex: 1;
-    }
-    .score-details .label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--text-3);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .score-bars {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 6px;
-    }
-    .score-bar-item {
+      padding: 18px 18px 14px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      opacity: 0;
+      transform: translateX(24px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
     }
-    .score-bar-label {
+    .mockup-panel.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+    .mockup-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .mockup-topbar-logo {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+    }
+    .mockup-topbar-step {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
       color: var(--text-3);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
-    .score-bar-track {
-      height: 3px;
-      background: rgba(var(--accent-rgb), 0.1);
-      border-radius: 2px;
-      overflow: hidden;
+    /* Panel 1 */
+    .mockup-panel-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--text-1); }
+    .mockup-instructor-list { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .mockup-instructor-row {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
     }
-    .score-bar-fill {
-      height: 100%;
-      border-radius: 2px;
+    .mockup-instructor-row.selected {
+      background: rgba(var(--accent-rgb), 0.07);
+      border-color: rgba(var(--accent-rgb), 0.35);
+    }
+    .mockup-instructor-row.locked { opacity: 0.45; }
+    .mockup-instructor-row img {
+      width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+    }
+    .mockup-instructor-row.selected img { box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5); }
+    .lyra-row img { box-shadow: 0 0 0 2px rgba(var(--green-rgb), 0.3); }
+    .mockup-instructor-info { flex: 1; }
+    .mockup-instructor-name { font-size: 14px; font-weight: 600; color: var(--text-1); margin-bottom: 2px; }
+    .mockup-instructor-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--text-3); letter-spacing: 0.04em;
+    }
+    .mockup-check {
+      width: 20px; height: 20px; border-radius: 50%;
       background: var(--accent);
-      width: 0;
-      transition: width 1s ease-out;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .score-bar-fill.s1 { background: var(--accent); }
-    .score-bar-fill.s2 { background: var(--green); }
-    .score-bar-fill.s3 { background: var(--purple); }
+    .mockup-check svg { color: #06060a; }
+    .mockup-begin-btn {
+      margin-top: 10px; width: 100%; padding: 12px;
+      border-radius: 12px; border: none;
+      background: linear-gradient(135deg, #0e7490, #22d3ee);
+      color: white; font-size: 14px; font-weight: 600; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    /* Panel 2 */
+    .mockup-coord-row {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;
+    }
+    .mockup-coord-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--text-3); letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .mockup-coord-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.15em;
+    }
+    .mockup-phase-track {
+      height: 3px; background: rgba(var(--accent-rgb), 0.1); border-radius: 2px; overflow: hidden; margin-bottom: 4px;
+    }
+    .mockup-phase-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 60%; }
+    .mockup-phase-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px; color: var(--accent); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 12px; text-align: right;
+    }
+    .mockup-instructor-bubble { display: flex; gap: 9px; margin-bottom: 8px; align-items: flex-start; }
+    .mockup-bubble-avatar {
+      width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+      border: 1px solid rgba(var(--accent-rgb), 0.3);
+    }
+    .mockup-bubble-content { flex: 1; }
+    .mockup-bubble-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 3px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .mockup-wave { display: flex; align-items: center; gap: 2px; height: 9px; }
+    .mockup-wave span {
+      width: 2px; background: var(--accent); border-radius: 1px;
+      animation: waveform 0.9s ease-in-out infinite;
+    }
+    .mockup-wave span:nth-child(1) { height: 3px; animation-delay: 0s; }
+    .mockup-wave span:nth-child(2) { height: 7px; animation-delay: 0.1s; }
+    .mockup-wave span:nth-child(3) { height: 9px; animation-delay: 0.2s; }
+    .mockup-wave span:nth-child(4) { height: 5px; animation-delay: 0.15s; }
+    .mockup-wave span:nth-child(5) { height: 8px; animation-delay: 0.05s; }
+    .mockup-bubble-text {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 0 10px 10px 10px;
+      padding: 8px 12px; font-size: 12px; color: var(--text-1); line-height: 1.5;
+    }
+    .mockup-user-bubble { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+    .mockup-user-text {
+      background: rgba(var(--accent-rgb), 0.1); border: 1px solid rgba(var(--accent-rgb), 0.2);
+      border-radius: 10px 0 10px 10px;
+      padding: 8px 12px; font-size: 12px; color: var(--text-1); line-height: 1.5; max-width: 72%;
+    }
+    .mockup-typing { display: flex; align-items: center; gap: 9px; margin-top: 2px; }
+    .mockup-typing-dots { display: flex; gap: 4px; }
+    .mockup-typing-dots span {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--text-3);
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+    .mockup-typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+    .mockup-typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .mockup-typing-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--text-3); letter-spacing: 0.06em;
+    }
+    /* Panel 3 */
+    .mockup-result-title { font-size: 15px; font-weight: 700; color: var(--text-1); }
+    .mockup-xp-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 700; color: var(--gold);
+      background: rgba(226,168,50,0.1); border: 1px solid rgba(226,168,50,0.25);
+      border-radius: 20px; padding: 3px 10px;
+    }
+    .mockup-result-top { display: flex; gap: 12px; margin-bottom: 12px; }
+    .mockup-target-img {
+      flex: 0 0 96px; height: 76px; border-radius: 10px; overflow: hidden; position: relative;
+      background: linear-gradient(135deg, #0e4166, #1a7a8c 30%, #3db3c4 60%, #a8e4ed);
+      border: 1px solid rgba(var(--accent-rgb), 0.2);
+    }
+    .mockup-target-label {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(6,6,10,0.5);
+      font-family: 'JetBrains Mono', monospace; font-size: 7px;
+      letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; text-align: center; gap: 2px;
+    }
+    .mockup-target-label .target-name { font-size: 9px; font-weight: 700; color: var(--text-1); letter-spacing: 0.04em; }
+    .mockup-score-block {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    }
+    .mockup-score-ring { position: relative; width: 58px; height: 58px; }
+    .mockup-score-ring svg { transform: rotate(-90deg); }
+    .mockup-score-ring circle { fill: none; stroke-width: 5; }
+    .mockup-score-bg { stroke: rgba(var(--accent-rgb), 0.1); }
+    .mockup-score-fill {
+      stroke: var(--accent);
+      stroke-dasharray: 163; stroke-dashoffset: 163;
+      stroke-linecap: round; transition: stroke-dashoffset 1.5s ease-out;
+    }
+    .mockup-score-fill.animate { stroke-dashoffset: 41; }
+    .mockup-score-num {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; color: var(--accent);
+    }
+    .mockup-score-sublabel {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px; color: var(--text-3); letter-spacing: 0.1em; text-align: center; text-transform: uppercase;
+    }
+    .mockup-dims { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+    .mockup-dim-row { display: flex; align-items: center; gap: 8px; }
+    .mockup-dim-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--text-3); letter-spacing: 0.04em;
+      width: 50px; flex-shrink: 0; text-transform: uppercase;
+    }
+    .mockup-dim-track { flex: 1; height: 4px; background: rgba(var(--accent-rgb), 0.08); border-radius: 2px; overflow: hidden; }
+    .mockup-dim-fill { height: 100%; border-radius: 2px; width: 0; transition: width 1s ease-out; }
+    .mockup-dim-fill.c1 { background: var(--accent); }
+    .mockup-dim-fill.c2 { background: var(--green); }
+    .mockup-dim-fill.c3 { background: var(--purple); }
+    .mockup-dim-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--text-2); width: 24px; text-align: right; flex-shrink: 0;
+    }
+    .mockup-feedback {
+      margin-top: 8px; padding: 8px 12px;
+      background: rgba(var(--accent-rgb), 0.04); border: 1px solid rgba(var(--accent-rgb), 0.1);
+      border-radius: 8px; font-size: 11px; color: var(--text-2); line-height: 1.5; font-style: italic;
+    }
+    .mockup-feedback-attr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--accent); margin-top: 4px; font-style: normal; letter-spacing: 0.06em;
+    }
+    /* Nav */
+    .mockup-nav {
+      padding: 12px 18px 16px;
+      background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.04);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .mockup-dots { display: flex; gap: 7px; align-items: center; }
+    .mockup-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(var(--accent-rgb), 0.2); cursor: pointer; transition: all 0.3s;
+    }
+    .mockup-dot.active { width: 20px; border-radius: 3px; background: var(--accent); }
+    .mockup-step-labels { display: flex; width: 100%; justify-content: space-around; }
+    .mockup-step-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 0.07em; color: var(--text-3);
+      text-transform: uppercase; text-align: center; transition: color 0.3s; cursor: pointer;
+    }
+    .mockup-step-label.active { color: var(--accent); }
 
     /* ── INSTRUCTORS ── */
     .instructors-section { padding: 48px 0 64px; }
@@ -1333,9 +1292,9 @@
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .terminal-body { padding: 16px; }
-      .score-bars { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 480px) {
+      .app-mockup-wrap { max-width: 100%; }
+      .mockup-panels { height: 420px; }
     }
   </style>
 </head>
@@ -1574,97 +1533,183 @@
     </div>
   </section>
 
-  <!-- Live Session Preview -->
+  <!-- Session Preview (App Mockup) -->
   <section class="session-preview-section">
     <div class="container">
       <p class="section-label fade-in">See It In Action</p>
       <h2 class="section-title fade-in">Inside a Training Session</h2>
       <p class="section-sub fade-in">
-        This is what it looks like when you sit down with an AI instructor and work a real target.
+        Choose your instructor, work a real target, receive scored feedback. This is the actual flow.
       </p>
-      <div class="session-terminal fade-in" id="sessionTerminal">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot"></div>
-            <div class="terminal-dot"></div>
-            <div class="terminal-dot"></div>
-          </div>
-          <div class="terminal-title">PSIONIC TRAINING SESSION</div>
-          <div class="terminal-status">
-            <span class="terminal-status-dot"></span>
-            LIVE
-          </div>
-        </div>
-        <div class="terminal-body">
-          <div class="terminal-coord">
-            TARGET COORDINATE: <span id="coordDisplay">--------</span>
-          </div>
-          <div class="terminal-phase-label">
-            <span id="phaseLabel1">INITIAL</span>
-            <span id="phaseLabel2">SENSORY</span>
-            <span id="phaseLabel3">DIMENSIONAL</span>
-            <span id="phaseLabel4">CONCEPTUAL</span>
-          </div>
-          <div class="terminal-phase-bar">
-            <div class="terminal-phase-pip" id="pip1"><div class="fill"></div></div>
-            <div class="terminal-phase-pip" id="pip2"><div class="fill"></div></div>
-            <div class="terminal-phase-pip" id="pip3"><div class="fill"></div></div>
-            <div class="terminal-phase-pip" id="pip4"><div class="fill"></div></div>
-          </div>
-          <div class="terminal-impressions" id="impressionArea">
-            <div class="terminal-line" id="line0"><span class="prompt">AKASH<span class="voice-dot"></span>:</span> <span class="impression-text">Focus on the coordinate. Let impressions arrive naturally.</span></div>
-            <div class="terminal-line" id="line1"><span class="prompt">&gt;</span> <span class="impression-text">smooth surface... curved edges</span> <span class="tag">SHAPE</span></div>
-            <div class="terminal-line" id="line2"><span class="prompt">&gt;</span> <span class="impression-text">blue-green color... reflective, bright</span> <span class="tag">COLOR</span></div>
-            <div class="terminal-line" id="line3"><span class="prompt">&gt;</span> <span class="impression-text">cool temperature... wet or damp</span> <span class="tag">TEXTURE</span></div>
-            <div class="terminal-line" id="line4"><span class="prompt">&gt;</span> <span class="impression-text">motion downward... flowing, continuous</span> <span class="tag">MOTION</span></div>
-            <div class="terminal-line" id="line5"><span class="prompt">&gt;</span> <span class="impression-text">looks like a sprinkler... wait, that's analysis</span> <span class="tag aol">AOL CAUGHT</span></div>
-            <div class="terminal-line" id="line6"><span class="prompt">&gt;</span> <span class="impression-text">natural formation... water feature... ancient</span> <span class="tag">CONCEPT</span></div>
-          </div>
-          <div class="terminal-voicebar">
-            <span class="vb-item"><span class="vb-mute-dot"></span> Akash · voice on</span>
-            <span class="vb-item">▶ replay</span>
-            <span class="vb-item">⏻ mute</span>
-          </div>
-          <div class="terminal-score" id="scoreArea">
-            <div class="score-ring">
-              <svg width="56" height="56" viewBox="0 0 56 56">
-                <circle class="score-bg" cx="28" cy="28" r="24"/>
-                <circle class="score-fill" id="scoreFill" cx="28" cy="28" r="24"/>
+      <div class="app-mockup-wrap fade-in" id="appMockup">
+        <div class="app-mockup">
+
+          <!-- Fake status bar -->
+          <div class="mockup-statusbar">
+            <span class="mockup-statusbar-time">9:41</span>
+            <div class="mockup-statusbar-icons">
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="currentColor">
+                <rect x="0" y="4" width="2" height="6" rx="1" opacity="0.4"/>
+                <rect x="3" y="2.5" width="2" height="7.5" rx="1" opacity="0.6"/>
+                <rect x="6" y="1" width="2" height="9" rx="1" opacity="0.8"/>
+                <rect x="9" y="0" width="2" height="10" rx="1"/>
               </svg>
-              <div class="score-num" id="scoreNum">0%</div>
+              <svg width="13" height="10" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-linecap="round">
+                <path d="M1 5C4.5 1 15.5 1 19 5" stroke-width="1.8" opacity="0.4"/>
+                <path d="M4 8C6.5 5.5 13.5 5.5 16 8" stroke-width="1.8" opacity="0.7"/>
+                <path d="M7.5 11C9 9.5 11 9.5 12.5 11" stroke-width="1.8"/>
+                <circle cx="10" cy="13.5" r="1" fill="currentColor"/>
+              </svg>
+              <svg width="20" height="10" viewBox="0 0 22 11" fill="none">
+                <rect x="0.5" y="0.5" width="18" height="10" rx="2" stroke="currentColor" stroke-opacity="0.4"/>
+                <rect x="1.5" y="1.5" width="13" height="8" rx="1.5" fill="currentColor"/>
+                <path d="M20 3.5V7.5C20.8 7.2 21.5 6.2 21.5 5.5C21.5 4.8 20.8 3.8 20 3.5Z" fill="currentColor" opacity="0.5"/>
+              </svg>
             </div>
-            <div class="score-details">
-              <div class="label">Dimension Accuracy</div>
-              <div class="score-bars">
-                <div class="score-bar-item">
-                  <div class="score-bar-label">Shape</div>
-                  <div class="score-bar-track"><div class="score-bar-fill s1" id="bar1" style="width:0"></div></div>
+          </div>
+
+          <!-- Panel Container -->
+          <div class="mockup-panels" id="mockupPanels">
+
+            <!-- PANEL 1: Choose Instructor -->
+            <div class="mockup-panel active" id="mpanel1">
+              <div class="mockup-topbar">
+                <span class="mockup-topbar-logo">PSIONIC TRAINING</span>
+                <span class="mockup-topbar-step">STEP 1 OF 3</span>
+              </div>
+              <div class="mockup-panel-title">Choose Your Instructor</div>
+              <div class="mockup-instructor-list">
+                <div class="mockup-instructor-row selected">
+                  <img src="./assets/akash.png" alt="Akash">
+                  <div class="mockup-instructor-info">
+                    <div class="mockup-instructor-name">Akash</div>
+                    <div class="mockup-instructor-role">CRV Training Officer · Free</div>
+                  </div>
+                  <div class="mockup-check">
+                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
                 </div>
-                <div class="score-bar-item">
-                  <div class="score-bar-label">Color</div>
-                  <div class="score-bar-track"><div class="score-bar-fill s2" id="bar2" style="width:0"></div></div>
+                <div class="mockup-instructor-row lyra-row">
+                  <img src="./assets/lyra.png" alt="Lyra">
+                  <div class="mockup-instructor-info">
+                    <div class="mockup-instructor-name">Lyra</div>
+                    <div class="mockup-instructor-role">Signal Coherence Specialist · Free</div>
+                  </div>
                 </div>
-                <div class="score-bar-item">
-                  <div class="score-bar-label">Texture</div>
-                  <div class="score-bar-track"><div class="score-bar-fill s1" id="bar3" style="width:0"></div></div>
+                <div class="mockup-instructor-row locked">
+                  <img src="./assets/veil.png" alt="Veil">
+                  <div class="mockup-instructor-info">
+                    <div class="mockup-instructor-name">Veil</div>
+                    <div class="mockup-instructor-role">Anomalous Phenomena · Asset Plan</div>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
-                <div class="score-bar-item">
-                  <div class="score-bar-label">Motion</div>
-                  <div class="score-bar-track"><div class="score-bar-fill s3" id="bar4" style="width:0"></div></div>
+              </div>
+              <button class="mockup-begin-btn">
+                Begin Session
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <!-- PANEL 2: Active Session -->
+            <div class="mockup-panel" id="mpanel2">
+              <div class="mockup-topbar">
+                <span class="mockup-topbar-logo">LIVE SESSION</span>
+                <span class="mockup-topbar-step">PHASE 3 / 4</span>
+              </div>
+              <div class="mockup-coord-row">
+                <span class="mockup-coord-label">Target</span>
+                <span class="mockup-coord-value">4719 — 2083</span>
+              </div>
+              <div class="mockup-phase-track">
+                <div class="mockup-phase-fill"></div>
+              </div>
+              <div class="mockup-phase-label">◀ DIMENSIONAL PHASE ▶</div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:8px; overflow:hidden;">
+                <div class="mockup-instructor-bubble">
+                  <img src="./assets/akash.png" alt="Akash" class="mockup-bubble-avatar">
+                  <div class="mockup-bubble-content">
+                    <div class="mockup-bubble-name">
+                      AKASH
+                      <div class="mockup-wave"><span></span><span></span><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="mockup-bubble-text">"Focus on the physical sensation. What is the temperature and texture?"</div>
+                  </div>
                 </div>
-                <div class="score-bar-item">
-                  <div class="score-bar-label">Scale</div>
-                  <div class="score-bar-track"><div class="score-bar-fill s2" id="bar5" style="width:0"></div></div>
+                <div class="mockup-user-bubble">
+                  <div class="mockup-user-text">cool, smooth... very reflective surface</div>
                 </div>
-                <div class="score-bar-item">
-                  <div class="score-bar-label">Concept</div>
-                  <div class="score-bar-track"><div class="score-bar-fill s1" id="bar6" style="width:0"></div></div>
+                <div class="mockup-instructor-bubble">
+                  <img src="./assets/akash.png" alt="Akash" class="mockup-bubble-avatar">
+                  <div class="mockup-bubble-content">
+                    <div class="mockup-bubble-name">AKASH</div>
+                    <div class="mockup-bubble-text">"Good signal. Now — scale. How large does this feel?"</div>
+                  </div>
+                </div>
+                <div class="mockup-typing">
+                  <div class="mockup-typing-dots"><span></span><span></span><span></span></div>
+                  <span class="mockup-typing-label">You are responding...</span>
                 </div>
               </div>
             </div>
+
+            <!-- PANEL 3: Session Result -->
+            <div class="mockup-panel" id="mpanel3">
+              <div class="mockup-topbar">
+                <span class="mockup-result-title">Session Complete</span>
+                <span class="mockup-xp-badge">+420 XP</span>
+              </div>
+              <div class="mockup-result-top">
+                <div class="mockup-target-img">
+                  <div class="mockup-target-label">
+                    <span>Target Revealed</span>
+                    <span class="target-name">Niagara Falls</span>
+                    <span>Ontario, Canada</span>
+                  </div>
+                </div>
+                <div class="mockup-score-block">
+                  <div class="mockup-score-ring">
+                    <svg width="58" height="58" viewBox="0 0 58 58">
+                      <circle class="mockup-score-bg" cx="29" cy="29" r="26"/>
+                      <circle class="mockup-score-fill" id="mockupScoreFill" cx="29" cy="29" r="26"/>
+                    </svg>
+                    <div class="mockup-score-num" id="mockupScoreNum">0%</div>
+                  </div>
+                  <div class="mockup-score-sublabel">Overall</div>
+                </div>
+              </div>
+              <div class="mockup-dims">
+                <div class="mockup-dim-row"><span class="mockup-dim-label">Shape</span><div class="mockup-dim-track"><div class="mockup-dim-fill c1" id="md1"></div></div><span class="mockup-dim-val">82%</span></div>
+                <div class="mockup-dim-row"><span class="mockup-dim-label">Color</span><div class="mockup-dim-track"><div class="mockup-dim-fill c2" id="md2"></div></div><span class="mockup-dim-val">71%</span></div>
+                <div class="mockup-dim-row"><span class="mockup-dim-label">Texture</span><div class="mockup-dim-track"><div class="mockup-dim-fill c1" id="md3"></div></div><span class="mockup-dim-val">78%</span></div>
+                <div class="mockup-dim-row"><span class="mockup-dim-label">Motion</span><div class="mockup-dim-track"><div class="mockup-dim-fill c3" id="md4"></div></div><span class="mockup-dim-val">65%</span></div>
+                <div class="mockup-dim-row"><span class="mockup-dim-label">Scale</span><div class="mockup-dim-track"><div class="mockup-dim-fill c2" id="md5"></div></div><span class="mockup-dim-val">88%</span></div>
+                <div class="mockup-dim-row"><span class="mockup-dim-label">Concept</span><div class="mockup-dim-track"><div class="mockup-dim-fill c1" id="md6"></div></div><span class="mockup-dim-val">69%</span></div>
+              </div>
+              <div class="mockup-feedback">
+                "Strong shape and texture signal — your motion data was accurate. Scale perception is developing well."
+                <div class="mockup-feedback-attr">— Akash, CRV Training Officer</div>
+              </div>
+            </div>
+
+          </div><!-- end mockup-panels -->
+
+          <!-- Navigation -->
+          <div class="mockup-nav">
+            <div class="mockup-dots">
+              <div class="mockup-dot active" onclick="goMockupPanel(0)"></div>
+              <div class="mockup-dot" onclick="goMockupPanel(1)"></div>
+              <div class="mockup-dot" onclick="goMockupPanel(2)"></div>
+            </div>
+            <div class="mockup-step-labels">
+              <span class="mockup-step-label active" onclick="goMockupPanel(0)">Pick Instructor</span>
+              <span class="mockup-step-label" onclick="goMockupPanel(1)">Live Session</span>
+              <span class="mockup-step-label" onclick="goMockupPanel(2)">Score &amp; Reveal</span>
+            </div>
           </div>
-        </div>
-      </div>
+
+        </div><!-- end app-mockup -->
+      </div><!-- end app-mockup-wrap -->
     </div>
   </section>
 
@@ -1884,110 +1929,62 @@
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Session terminal animation
+    // App Mockup Panel Navigation
     (function() {
-      const terminal = document.getElementById('sessionTerminal');
-      if (!terminal) return;
+      const panels = document.querySelectorAll('.mockup-panel');
+      const dots = document.querySelectorAll('.mockup-dot');
+      const labels = document.querySelectorAll('.mockup-step-label');
+      let current = 0;
+      let autoTimer = null;
+      let scoreAnimated = false;
 
-      let hasPlayed = false;
+      function goMockupPanel(idx) {
+        panels[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        labels[current].classList.remove('active');
+        current = idx;
+        panels[current].classList.add('active');
+        dots[current].classList.add('active');
+        labels[current].classList.add('active');
+        if (current === 2 && !scoreAnimated) {
+          scoreAnimated = true;
+          animateResult();
+        }
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(advance, 5500);
+      }
 
-      const terminalObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !hasPlayed) {
-            hasPlayed = true;
-            runTerminalAnimation();
-          }
-        });
-      }, { threshold: 0.3 });
+      function advance() { goMockupPanel((current + 1) % 3); }
 
-      terminalObserver.observe(terminal);
-
-      function runTerminalAnimation() {
-        const coord = '4719-2083';
-        const coordDisplay = document.getElementById('coordDisplay');
-        const lines = [
-          document.getElementById('line0'),
-          document.getElementById('line1'),
-          document.getElementById('line2'),
-          document.getElementById('line3'),
-          document.getElementById('line4'),
-          document.getElementById('line5'),
-          document.getElementById('line6')
-        ];
-        const pips = [
-          document.getElementById('pip1'),
-          document.getElementById('pip2'),
-          document.getElementById('pip3'),
-          document.getElementById('pip4')
-        ];
-        const phaseLabels = [
-          document.getElementById('phaseLabel1'),
-          document.getElementById('phaseLabel2'),
-          document.getElementById('phaseLabel3'),
-          document.getElementById('phaseLabel4')
-        ];
-
-        // Type coordinate
-        let ci = 0;
-        const coordInterval = setInterval(() => {
-          if (ci < coord.length) {
-            coordDisplay.textContent = coord.substring(0, ci + 1) + '--------'.substring(ci + 1);
-            ci++;
-          } else {
-            coordDisplay.textContent = coord;
-            clearInterval(coordInterval);
-          }
-        }, 80);
-
-        // Show lines sequentially
-        const delays = [800, 2000, 3200, 4400, 5800, 7200, 8600];
-        const phaseMap = [0, 0, 1, 1, 2, 3, 3]; // which phase each line belongs to
-
-        delays.forEach((delay, i) => {
-          setTimeout(() => {
-            lines[i].classList.add('typed');
-
-            // Activate phase pips
-            const phase = phaseMap[i];
-            if (phase > 0) {
-              for (let p = 0; p < phase; p++) {
-                pips[p].classList.remove('active');
-                pips[p].classList.add('done');
-              }
-            }
-            pips[phase].classList.add('active');
-            phaseLabels[phase].classList.add('active-label');
-          }, delay);
-        });
-
-        // Show score
+      function animateResult() {
         setTimeout(() => {
-          // Mark all pips done
-          pips.forEach(p => { p.classList.remove('active'); p.classList.add('done'); });
+          const fill = document.getElementById('mockupScoreFill');
+          if (fill) fill.classList.add('animate');
+          let n = 0;
+          const iv = setInterval(() => {
+            n += 2; if (n >= 75) { n = 75; clearInterval(iv); }
+            const el = document.getElementById('mockupScoreNum');
+            if (el) el.textContent = n + '%';
+          }, 25);
+        }, 150);
+        [['md1','82%'],['md2','71%'],['md3','78%'],['md4','65%'],['md5','88%'],['md6','69%']]
+          .forEach(([id, w], i) => setTimeout(() => { const el = document.getElementById(id); if (el) el.style.width = w; }, 200 + i * 120));
+      }
 
-          const scoreArea = document.getElementById('scoreArea');
-          scoreArea.classList.add('visible');
+      window.goMockupPanel = goMockupPanel;
 
-          // Animate score ring
-          setTimeout(() => {
-            document.getElementById('scoreFill').classList.add('animate');
-            // Count up score number
-            let score = 0;
-            const scoreInterval = setInterval(() => {
-              score += 2;
-              if (score > 75) { score = 75; clearInterval(scoreInterval); }
-              document.getElementById('scoreNum').textContent = score + '%';
-            }, 30);
-
-            // Animate bars
-            document.getElementById('bar1').style.width = '82%';
-            document.getElementById('bar2').style.width = '71%';
-            document.getElementById('bar3').style.width = '78%';
-            document.getElementById('bar4').style.width = '65%';
-            document.getElementById('bar5').style.width = '88%';
-            document.getElementById('bar6').style.width = '69%';
-          }, 200);
-        }, 10000);
+      const mockup = document.getElementById('appMockup');
+      if (mockup) {
+        let started = false;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting && !started) {
+              started = true;
+              autoTimer = setTimeout(advance, 4000);
+            }
+          });
+        }, { threshold: 0.3 });
+        obs.observe(mockup);
       }
     })();
 
