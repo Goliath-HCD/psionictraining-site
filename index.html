@@ -1206,6 +1206,60 @@
     .cta-carousel-slide.slide-veil img {
       filter: drop-shadow(0 0 24px rgba(167,139,250,0.35));
     }
+    /* ── Session overlay animation ── */
+    .slide-session-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 10px 12px 8px;
+      background: linear-gradient(to top, rgba(6,6,10,0.97) 0%, rgba(6,6,10,0.82) 55%, transparent 100%);
+      pointer-events: none;
+    }
+    .slide-live-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .slide-live-badge {
+      display: flex; align-items: center; gap: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600;
+    }
+    .slide-live-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      animation: liveDotPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes liveDotPulse { 0%,100% { opacity: 0.35; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1); } }
+    .slide-instructor-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.45);
+    }
+    .slide-waveform {
+      display: flex; align-items: flex-end; gap: 2.5px;
+      height: 18px; margin-bottom: 6px;
+    }
+    .wv-bar {
+      width: 3px; border-radius: 1.5px;
+      min-height: 2px; max-height: 16px;
+      background: currentColor;
+      animation: wvAnim var(--dur, 0.7s) ease-in-out var(--delay, 0s) infinite alternate;
+    }
+    @keyframes wvAnim {
+      0%   { height: var(--h0, 3px); }
+      100% { height: var(--h1, 14px); }
+    }
+    .slide-akash .slide-live-badge, .slide-akash .slide-live-dot, .slide-akash .wv-bar { color: var(--accent); background-color: var(--accent); }
+    .slide-lyra  .slide-live-badge, .slide-lyra  .slide-live-dot, .slide-lyra  .wv-bar { color: var(--green);  background-color: var(--green); }
+    .slide-veil  .slide-live-badge, .slide-veil  .slide-live-dot, .slide-veil  .wv-bar { color: var(--purple); background-color: var(--purple); }
+    .slide-akash .slide-live-badge { color: var(--accent); }
+    .slide-lyra  .slide-live-badge { color: var(--green); }
+    .slide-veil  .slide-live-badge { color: var(--purple); }
+    .slide-phase-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.32); white-space: nowrap; overflow: hidden;
+    }
+
     /* Dots */
     .cta-carousel-dots {
       display: flex;
@@ -1371,6 +1425,11 @@
       .app-mockup-wrap { max-width: 100%; }
       .mockup-panels { height: 420px; }
     }
+
+    /* Courses grid mobile */
+    @media (max-width: 600px) {
+      .courses-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
   <!-- MailerLite (psionicresearch.com newsletter) -->
   <script>
@@ -1425,6 +1484,7 @@
       <a href="#instructors">Instructors</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="/courses/foundations.html">Courses</a>
       <a href="https://psionicresearch.com" target="_blank">Research</a>
       <a href="https://app.psionictraining.com/login" class="nav-cta"><span class="nav-cta-full">Start Training Free</span><span class="nav-cta-short">Start Free</span></a>
     </div>
@@ -1955,8 +2015,53 @@
     </div>
   </section>
 
+  <!-- Courses Teaser -->
+  <section class="section" id="courses" style="padding:72px 0; border-top:1px solid var(--border);">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:48px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-3); margin-bottom:12px;">Courses</div>
+        <h2 style="font-size:clamp(1.6rem,3.5vw,2.2rem); font-weight:700; color:var(--text-1); margin-bottom:10px;">Structured Deep Training</h2>
+        <p style="font-size:16px; color:var(--text-2); max-width:520px; margin:0 auto;">The free app builds the habit. The courses build the skill. Two structured programs — one-time purchase, lifetime access.</p>
+      </div>
+
+      <div class="courses-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:820px; margin:0 auto;">
+
+        <!-- Foundations card -->
+        <a href="/courses/foundations.html" style="text-decoration:none; display:block; background:var(--surface); border:1px solid rgba(34,211,238,0.15); border-radius:14px; padding:28px; position:relative; overflow:hidden; transition:border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,211,238,0.32)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(34,211,238,0.15)';this.style.transform='translateY(0)'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--accent),transparent);"></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">Foundation</div>
+          <div style="font-size:17px; font-weight:700; color:var(--text-1); margin-bottom:8px;">Foundations of Remote Viewing</div>
+          <div style="font-size:13px; color:var(--text-3); line-height:1.55; margin-bottom:16px;">The complete CRV stage protocol — 8 modules covering Stage 1-4, AOL management, and building a measurable practice. Taught by Akash.</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+            <div style="font-size:13px; color:var(--text-3);">8 modules &nbsp;·&nbsp; Lifetime access</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; color:var(--text-1);">$97</div>
+          </div>
+          <div style="margin-top:14px; font-size:12px; font-weight:600; color:var(--accent); display:flex; align-items:center; gap:4px;">View Course <span style="font-size:14px;">→</span></div>
+        </a>
+
+        <!-- Contact Protocols card -->
+        <a href="/courses/contact-protocols.html" style="text-decoration:none; display:block; background:var(--surface); border:1px solid rgba(127,119,221,0.15); border-radius:14px; padding:28px; position:relative; overflow:hidden; transition:border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(127,119,221,0.32)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(127,119,221,0.15)';this.style.transform='translateY(0)'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--purple),transparent);"></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--purple); margin-bottom:10px;">Advanced</div>
+          <div style="font-size:17px; font-weight:700; color:var(--text-1); margin-bottom:8px;">Contact Protocols: NHI Communication</div>
+          <div style="font-size:13px; color:var(--text-3); line-height:1.55; margin-bottom:16px;">CE-5 methodology, CRV for anomalous targets, and field session structure from the declassified record. Taught by Veil. Requires Foundations.</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+            <div style="font-size:13px; color:var(--text-3);">6 modules &nbsp;·&nbsp; Lifetime access</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; color:var(--text-1);">$147</div>
+          </div>
+          <div style="margin-top:14px; font-size:12px; font-weight:600; color:var(--purple); display:flex; align-items:center; gap:4px;">View Course <span style="font-size:14px;">→</span></div>
+        </a>
+
+      </div>
+
+      <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--text-3);">Both courses in development. Join the waitlist below to get early access and launch pricing.</p>
+    </div>
+  </section>
+
+  <div id="newsletter" style="scroll-margin-top:60px;"></div>
+
   <!-- CTA -->
-  <section class="cta-section" id="signup">
+  <section class="cta-section" id="signup" style="border-top:1px solid var(--border);">
     <div class="container">
       <div class="cta-card fade-in">
 
@@ -1964,15 +2069,79 @@
         <div class="cta-instructors-col">
           <span class="cta-instructor-label">Meet Your Instructors</span>
           <div class="cta-carousel" id="ctaCarousel">
+
+            <!-- Akash slide -->
             <div class="cta-carousel-slide slide-akash active">
-              <img src="https://app.psionictraining.com/assets/instructors/akash.png" alt="Akash — AI CRV Instructor" loading="lazy">
+              <img src="https://app.psionictraining.com/assets/instructors/akash.png" alt="Akash" loading="lazy">
+              <div class="slide-session-overlay">
+                <div class="slide-live-row">
+                  <div class="slide-live-badge"><span class="slide-live-dot"></span>Live Session</div>
+                  <span class="slide-instructor-name">AKASH</span>
+                </div>
+                <div class="slide-waveform">
+                  <div class="wv-bar" style="--dur:0.55s;--delay:0.00s;--h0:4px;--h1:13px"></div>
+                  <div class="wv-bar" style="--dur:0.70s;--delay:0.08s;--h0:7px;--h1:16px"></div>
+                  <div class="wv-bar" style="--dur:0.48s;--delay:0.15s;--h0:3px;--h1:11px"></div>
+                  <div class="wv-bar" style="--dur:0.62s;--delay:0.05s;--h0:9px;--h1:15px"></div>
+                  <div class="wv-bar" style="--dur:0.80s;--delay:0.22s;--h0:4px;--h1:14px"></div>
+                  <div class="wv-bar" style="--dur:0.50s;--delay:0.18s;--h0:6px;--h1:12px"></div>
+                  <div class="wv-bar" style="--dur:0.68s;--delay:0.10s;--h0:3px;--h1:16px"></div>
+                  <div class="wv-bar" style="--dur:0.58s;--delay:0.28s;--h0:8px;--h1:13px"></div>
+                  <div class="wv-bar" style="--dur:0.72s;--delay:0.03s;--h0:4px;--h1:11px"></div>
+                  <div class="wv-bar" style="--dur:0.45s;--delay:0.20s;--h0:5px;--h1:14px"></div>
+                </div>
+                <div class="slide-phase-label">Initial Perception · Phase 1 of 4</div>
+              </div>
             </div>
+
+            <!-- Lyra slide -->
             <div class="cta-carousel-slide slide-lyra">
-              <img src="https://app.psionictraining.com/assets/instructors/lyra.png" alt="Lyra — AI CRV Instructor" loading="lazy" onerror="this.closest('.cta-carousel-slide').style.display='none'">
+              <img src="https://app.psionictraining.com/assets/instructors/lyra.png" alt="Lyra" loading="lazy" onerror="this.closest('.cta-carousel-slide').style.display='none'">
+              <div class="slide-session-overlay">
+                <div class="slide-live-row">
+                  <div class="slide-live-badge"><span class="slide-live-dot"></span>Live Session</div>
+                  <span class="slide-instructor-name">LYRA</span>
+                </div>
+                <div class="slide-waveform">
+                  <div class="wv-bar" style="--dur:0.60s;--delay:0.00s;--h0:3px;--h1:10px"></div>
+                  <div class="wv-bar" style="--dur:0.45s;--delay:0.12s;--h0:8px;--h1:16px"></div>
+                  <div class="wv-bar" style="--dur:0.75s;--delay:0.06s;--h0:4px;--h1:13px"></div>
+                  <div class="wv-bar" style="--dur:0.52s;--delay:0.20s;--h0:6px;--h1:14px"></div>
+                  <div class="wv-bar" style="--dur:0.65s;--delay:0.15s;--h0:3px;--h1:11px"></div>
+                  <div class="wv-bar" style="--dur:0.82s;--delay:0.08s;--h0:7px;--h1:15px"></div>
+                  <div class="wv-bar" style="--dur:0.48s;--delay:0.25s;--h0:4px;--h1:12px"></div>
+                  <div class="wv-bar" style="--dur:0.70s;--delay:0.18s;--h0:5px;--h1:16px"></div>
+                  <div class="wv-bar" style="--dur:0.55s;--delay:0.04s;--h0:3px;--h1:10px"></div>
+                  <div class="wv-bar" style="--dur:0.63s;--delay:0.22s;--h0:6px;--h1:13px"></div>
+                </div>
+                <div class="slide-phase-label">Signal Coherence · Dimensional</div>
+              </div>
             </div>
+
+            <!-- Veil slide -->
             <div class="cta-carousel-slide slide-veil">
-              <img src="https://app.psionictraining.com/assets/instructors/veil.png" alt="Veil — AI CRV Instructor" loading="lazy" onerror="this.closest('.cta-carousel-slide').style.display='none'">
+              <img src="https://app.psionictraining.com/assets/instructors/veil.png" alt="Veil" loading="lazy" onerror="this.closest('.cta-carousel-slide').style.display='none'">
+              <div class="slide-session-overlay">
+                <div class="slide-live-row">
+                  <div class="slide-live-badge"><span class="slide-live-dot"></span>Live Session</div>
+                  <span class="slide-instructor-name">VEIL</span>
+                </div>
+                <div class="slide-waveform">
+                  <div class="wv-bar" style="--dur:0.90s;--delay:0.00s;--h0:3px;--h1:9px"></div>
+                  <div class="wv-bar" style="--dur:1.10s;--delay:0.15s;--h0:6px;--h1:14px"></div>
+                  <div class="wv-bar" style="--dur:0.75s;--delay:0.08s;--h0:4px;--h1:16px"></div>
+                  <div class="wv-bar" style="--dur:0.95s;--delay:0.22s;--h0:5px;--h1:12px"></div>
+                  <div class="wv-bar" style="--dur:1.20s;--delay:0.05s;--h0:3px;--h1:10px"></div>
+                  <div class="wv-bar" style="--dur:0.85s;--delay:0.18s;--h0:7px;--h1:15px"></div>
+                  <div class="wv-bar" style="--dur:1.00s;--delay:0.12s;--h0:4px;--h1:13px"></div>
+                  <div class="wv-bar" style="--dur:0.78s;--delay:0.28s;--h0:5px;--h1:11px"></div>
+                  <div class="wv-bar" style="--dur:1.05s;--delay:0.06s;--h0:3px;--h1:14px"></div>
+                  <div class="wv-bar" style="--dur:0.92s;--delay:0.20s;--h0:6px;--h1:16px"></div>
+                </div>
+                <div class="slide-phase-label">Anomalous Phenomena · Conceptual</div>
+              </div>
             </div>
+
           </div>
           <div class="cta-carousel-dots">
             <div class="cta-carousel-dot active" data-slide="0"></div>
@@ -1990,7 +2159,7 @@
             Start Free Training
           </a>
           <div class="cta-note">
-            <p>Get PURSUE file analysis, consciousness research, and training insights in your inbox.</p>
+            <p>PURSUE file analysis, training insights, and course launch notifications — in your inbox.</p>
             <div class="ml-embedded" data-form="vRwBCQ" style="margin-top:12px;"></div>
             <p class="form-note">No spam. Unsubscribe anytime.</p>
           </div>
@@ -2005,7 +2174,9 @@
     <div class="container">
       <div class="footer-links">
         <a href="https://app.psionictraining.com">Sign in</a>
-        <a href="https://psionicresearch.com">Psionic Research</a>
+        <a href="/courses/foundations.html">Foundations</a>
+        <a href="/courses/contact-protocols.html">Contact Protocols</a>
+        <a href="https://psionicresearch.com">Research</a>
         <a href="https://app.psionictraining.com/terms">Terms</a>
         <a href="https://app.psionictraining.com/privacy">Privacy</a>
       </div>
