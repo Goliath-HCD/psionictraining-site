@@ -178,9 +178,12 @@
     }
     @media (max-width: 480px) {
       .nav { padding: 0 12px; }
-      .nav-cta { padding: 7px 12px !important; font-size: 11px !important; white-space: nowrap; }
+      .nav-cta { padding: 7px 14px !important; font-size: 12px !important; white-space: nowrap; }
       .nav-logo-text { display: none; }
+      .nav-cta-full { display: none; }
+      .nav-cta-short { display: inline; }
     }
+    .nav-cta-short { display: none; }
 
     /* ── SECTIONS ── */
     section { position: relative; z-index: 1; }
@@ -1162,40 +1165,56 @@
       align-items: center;
       justify-content: flex-end;
     }
-    .cta-trio {
+    /* ── Instructor carousel ── */
+    .cta-carousel {
       position: relative;
-      width: 240px;
+      width: 200px;
       height: 220px;
       margin: 0 auto;
     }
-    .cta-trio img {
+    .cta-carousel-slide {
       position: absolute;
       bottom: 0;
-      height: 200px;
-      width: auto;
-    }
-    .cta-trio .trio-lyra {
-      left: 0;
-      height: 170px;
-      bottom: 8px;
-      opacity: 0.85;
-      filter: drop-shadow(0 0 18px rgba(74,222,128,0.25));
-      z-index: 1;
-    }
-    .cta-trio .trio-akash {
       left: 50%;
       transform: translateX(-50%);
-      height: 210px;
-      z-index: 3;
-      filter: drop-shadow(0 0 32px rgba(34,211,238,0.35));
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      pointer-events: none;
     }
-    .cta-trio .trio-veil {
-      right: 0;
-      height: 175px;
-      bottom: 6px;
-      opacity: 0.8;
-      filter: drop-shadow(0 0 18px rgba(167,139,250,0.25));
-      z-index: 2;
+    .cta-carousel-slide.active {
+      opacity: 1;
+    }
+    .cta-carousel-slide img {
+      height: 210px;
+      width: auto;
+      display: block;
+    }
+    .cta-carousel-slide.slide-akash img {
+      filter: drop-shadow(0 0 32px rgba(34,211,238,0.4));
+    }
+    .cta-carousel-slide.slide-lyra img {
+      filter: drop-shadow(0 0 24px rgba(74,222,128,0.35));
+    }
+    .cta-carousel-slide.slide-veil img {
+      filter: drop-shadow(0 0 24px rgba(167,139,250,0.35));
+    }
+    /* Dots */
+    .cta-carousel-dots {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      padding: 10px 0 14px;
+    }
+    .cta-carousel-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      transition: background 0.4s, transform 0.3s;
+    }
+    .cta-carousel-dot.active {
+      background: var(--accent);
+      transform: scale(1.3);
     }
     .cta-instructor-label {
       position: absolute;
@@ -1249,14 +1268,12 @@
       .cta-card { flex-direction: column; }
       .cta-instructors-col {
         flex: none;
-        height: 200px;
+        height: 220px;
         border-right: none;
         border-bottom: 1px solid rgba(var(--accent-rgb),0.1);
       }
-      .cta-trio { width: 200px; height: 180px; }
-      .cta-trio .trio-akash { height: 175px; }
-      .cta-trio .trio-lyra { height: 140px; }
-      .cta-trio .trio-veil { height: 145px; }
+      .cta-carousel { width: 160px; height: 185px; }
+      .cta-carousel-slide img { height: 175px; }
       .cta-content-col { padding: 36px 24px 40px; text-align: center; }
       .cta-content-col .btn { width: 100%; justify-content: center; }
     }
@@ -1393,7 +1410,7 @@
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="https://psionicresearch.com" target="_blank">Research</a>
-      <a href="https://app.psionictraining.com/login" class="nav-cta">Start Training Free</a>
+      <a href="https://app.psionictraining.com/login" class="nav-cta"><span class="nav-cta-full">Start Training Free</span><span class="nav-cta-short">Start Free</span></a>
     </div>
   </nav>
 
@@ -1927,30 +1944,24 @@
     <div class="container">
       <div class="cta-card fade-in">
 
-        <!-- Three-instructor column -->
+        <!-- Instructor carousel column -->
         <div class="cta-instructors-col">
-          <span class="cta-instructor-label">Choose Your Instructor</span>
-          <div class="cta-trio">
-            <img
-              class="trio-lyra"
-              src="https://app.psionictraining.com/assets/instructors/lyra.png"
-              alt="Lyra — AI CRV Instructor"
-              loading="lazy"
-              onerror="this.style.display='none'"
-            >
-            <img
-              class="trio-akash"
-              src="https://app.psionictraining.com/assets/instructors/akash.png"
-              alt="Akash — AI CRV Instructor"
-              loading="lazy"
-            >
-            <img
-              class="trio-veil"
-              src="https://app.psionictraining.com/assets/instructors/veil.png"
-              alt="Veil — AI CRV Instructor"
-              loading="lazy"
-              onerror="this.style.display='none'"
-            >
+          <span class="cta-instructor-label">Meet Your Instructors</span>
+          <div class="cta-carousel" id="ctaCarousel">
+            <div class="cta-carousel-slide slide-akash active">
+              <img src="https://app.psionictraining.com/assets/instructors/akash.png" alt="Akash — AI CRV Instructor" loading="lazy">
+            </div>
+            <div class="cta-carousel-slide slide-lyra">
+              <img src="https://app.psionictraining.com/assets/instructors/lyra.png" alt="Lyra — AI CRV Instructor" loading="lazy" onerror="this.closest('.cta-carousel-slide').style.display='none'">
+            </div>
+            <div class="cta-carousel-slide slide-veil">
+              <img src="https://app.psionictraining.com/assets/instructors/veil.png" alt="Veil — AI CRV Instructor" loading="lazy" onerror="this.closest('.cta-carousel-slide').style.display='none'">
+            </div>
+          </div>
+          <div class="cta-carousel-dots">
+            <div class="cta-carousel-dot active" data-slide="0"></div>
+            <div class="cta-carousel-dot" data-slide="1"></div>
+            <div class="cta-carousel-dot" data-slide="2"></div>
           </div>
         </div>
 
@@ -2168,6 +2179,41 @@
         regs.forEach(r => r.unregister());
       });
     }
+  </script>
+
+  <script>
+    // ── CTA instructor carousel ──────────────────────────────────────────────
+    (function () {
+      const slides = document.querySelectorAll('#ctaCarousel .cta-carousel-slide');
+      const dots   = document.querySelectorAll('.cta-carousel-dot');
+      let current  = 0;
+      let timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() { goTo(current + 1); }
+
+      function startAuto() {
+        clearInterval(timer);
+        timer = setInterval(next, 3800);
+      }
+
+      // Dot clicks
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          goTo(parseInt(dot.dataset.slide, 10));
+          startAuto();
+        });
+      });
+
+      startAuto();
+    })();
   </script>
 
 </body>
