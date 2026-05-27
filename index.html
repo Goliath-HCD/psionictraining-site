@@ -177,8 +177,9 @@
       .nav-links a:not(.nav-cta) { display: none; }
     }
     @media (max-width: 480px) {
-      .nav { padding: 0 14px; }
-      .nav-cta { padding: 7px 14px !important; font-size: 12px !important; white-space: nowrap; }
+      .nav { padding: 0 12px; }
+      .nav-cta { padding: 7px 12px !important; font-size: 11px !important; white-space: nowrap; }
+      .nav-logo-text { display: none; }
     }
 
     /* ── SECTIONS ── */
@@ -786,22 +787,40 @@
     .veil .instructor-avatar { box-shadow: 0 0 0 2px rgba(var(--purple-rgb),0.3), 0 0 20px rgba(var(--purple-rgb),0.15); }
 
     /* Audio play indicator */
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.88); }
+    }
     .instructor-card { cursor: pointer; }
     .instructor-card .play-hint {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       margin-top: 16px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.08em;
-      color: var(--text-3);
-      transition: color 0.2s;
+      color: var(--accent);
+      background: rgba(34,211,238,0.07);
+      border: 1px solid rgba(34,211,238,0.18);
+      border-radius: 20px;
+      padding: 5px 12px;
+      transition: all 0.2s;
     }
-    .instructor-card:hover .play-hint { color: var(--text-2); }
-    .instructor-card.playing .play-hint { color: var(--accent); }
-    .play-hint svg { opacity: 0.6; }
-    .instructor-card:hover .play-hint svg { opacity: 1; }
+    .akash .play-hint { color: var(--accent); border-color: rgba(34,211,238,0.25); background: rgba(34,211,238,0.07); }
+    .lyra .play-hint { color: var(--green); border-color: rgba(var(--green-rgb),0.25); background: rgba(var(--green-rgb),0.07); }
+    .veil .play-hint { color: #a78bfa; border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.07); }
+    .instructor-card:hover .play-hint { background: rgba(34,211,238,0.12); }
+    .instructor-card.playing .play-hint { background: rgba(34,211,238,0.15); border-color: rgba(34,211,238,0.4); }
+    .play-hint .audio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse-ring 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .instructor-card.playing .play-hint .audio-dot { animation-duration: 0.6s; }
 
     .card-header-text {
       display: flex;
@@ -1132,27 +1151,55 @@
       background: linear-gradient(90deg, var(--accent), var(--green), var(--purple));
       z-index: 1;
     }
-    .cta-akash-col {
+    .cta-instructors-col {
       flex: 0 0 280px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(180deg, rgba(34,211,238,0.06) 0%, rgba(34,211,238,0.02) 100%);
+      background: linear-gradient(180deg, rgba(34,211,238,0.06) 0%, rgba(74,222,128,0.03) 50%, rgba(167,139,250,0.04) 100%);
       border-right: 1px solid rgba(var(--accent-rgb),0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
     }
-    .cta-akash-col img {
+    .cta-trio {
+      position: relative;
       width: 240px;
-      height: auto;
-      display: block;
+      height: 220px;
       margin: 0 auto;
-      filter: drop-shadow(0 0 32px rgba(34,211,238,0.22));
     }
-    .cta-akash-label {
+    .cta-trio img {
       position: absolute;
-      top: 24px;
+      bottom: 0;
+      height: 200px;
+      width: auto;
+    }
+    .cta-trio .trio-lyra {
+      left: 0;
+      height: 170px;
+      bottom: 8px;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 18px rgba(74,222,128,0.25));
+      z-index: 1;
+    }
+    .cta-trio .trio-akash {
+      left: 50%;
+      transform: translateX(-50%);
+      height: 210px;
+      z-index: 3;
+      filter: drop-shadow(0 0 32px rgba(34,211,238,0.35));
+    }
+    .cta-trio .trio-veil {
+      right: 0;
+      height: 175px;
+      bottom: 6px;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 18px rgba(167,139,250,0.25));
+      z-index: 2;
+    }
+    .cta-instructor-label {
+      position: absolute;
+      top: 20px;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'JetBrains Mono', monospace;
@@ -1200,13 +1247,16 @@
     }
     @media (max-width: 680px) {
       .cta-card { flex-direction: column; }
-      .cta-akash-col {
+      .cta-instructors-col {
         flex: none;
         height: 200px;
         border-right: none;
         border-bottom: 1px solid rgba(var(--accent-rgb),0.1);
       }
-      .cta-akash-col img { width: 160px; }
+      .cta-trio { width: 200px; height: 180px; }
+      .cta-trio .trio-akash { height: 175px; }
+      .cta-trio .trio-lyra { height: 140px; }
+      .cta-trio .trio-veil { height: 145px; }
       .cta-content-col { padding: 36px 24px 40px; text-align: center; }
       .cta-content-col .btn { width: 100%; justify-content: center; }
     }
@@ -1297,6 +1347,11 @@
       .mockup-panels { height: 420px; }
     }
   </style>
+  <!-- MailerLite (psionicresearch.com newsletter) -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2348934');
+  </script>
 </head>
 <body>
 
@@ -1431,8 +1486,8 @@
             <span class="instructor-tag">Analytical</span>
           </div>
           <div class="play-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            CLICK TO HEAR AKASH
+            <span class="audio-dot"></span>
+            HEAR AKASH
           </div>
         </div>
         <div class="instructor-card lyra fade-in" onclick="playVoiceSample('lyra', this)">
@@ -1456,8 +1511,8 @@
             <span class="instructor-tag">Signal vs Noise</span>
           </div>
           <div class="play-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            CLICK TO HEAR LYRA
+            <span class="audio-dot"></span>
+            HEAR LYRA
           </div>
         </div>
         <div class="instructor-card veil fade-in" onclick="playVoiceSample('veil', this)">
@@ -1481,8 +1536,8 @@
             <span class="instructor-tag">Skill-Walled</span>
           </div>
           <div class="play-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            CLICK TO HEAR VEIL
+            <span class="audio-dot"></span>
+            HEAR VEIL
           </div>
         </div>
       </div>
@@ -1872,28 +1927,45 @@
     <div class="container">
       <div class="cta-card fade-in">
 
-        <!-- Akash avatar column -->
-        <div class="cta-akash-col">
-          <span class="cta-akash-label">Your Instructor</span>
-          <img
-            src="https://app.psionictraining.com/assets/instructors/akash.png"
-            alt="Akash — AI CRV Instructor"
-            loading="lazy"
-          >
+        <!-- Three-instructor column -->
+        <div class="cta-instructors-col">
+          <span class="cta-instructor-label">Choose Your Instructor</span>
+          <div class="cta-trio">
+            <img
+              class="trio-lyra"
+              src="https://app.psionictraining.com/assets/instructors/lyra.png"
+              alt="Lyra — AI CRV Instructor"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            >
+            <img
+              class="trio-akash"
+              src="https://app.psionictraining.com/assets/instructors/akash.png"
+              alt="Akash — AI CRV Instructor"
+              loading="lazy"
+            >
+            <img
+              class="trio-veil"
+              src="https://app.psionictraining.com/assets/instructors/veil.png"
+              alt="Veil — AI CRV Instructor"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            >
+          </div>
         </div>
 
         <!-- Text + CTA column -->
         <div class="cta-content-col">
           <h2>Ready to See What Your Mind Can Do?</h2>
-          <p>Akash walks you through every phase of a real CRV session — scored by AI, tracked over time. Three free sessions per week. No credit card. Pick your instructor and start now.</p>
+          <p>Akash, Lyra, or Veil walk you through every phase of a real CRV session — scored by AI, tracked over time. Three free sessions per week. No credit card.</p>
           <a href="https://app.psionictraining.com/login" class="btn btn-primary" style="display:inline-flex;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             Start Free Training
           </a>
           <div class="cta-note">
             <p>Get PURSUE file analysis, consciousness research, and training insights in your inbox.</p>
-            <p style="font-size:13px; color:var(--text-2); margin-top:8px;">Newsletter launching soon — <a href="https://psionicresearch.com" style="color:var(--accent); text-decoration:none;">follow Psionic Research</a> in the meantime.</p>
-            <p class="form-note">No spam. Unsubscribe anytime. Sent from the Psionic Training team.</p>
+            <div class="ml-embedded" data-form="vRwBCQ" style="margin-top:12px;"></div>
+            <p class="form-note">No spam. Unsubscribe anytime.</p>
           </div>
         </div>
 
@@ -2010,15 +2082,15 @@
 
     function resetPlayHint(cardEl, instructor) {
       cardEl.classList.remove('playing');
-      cardEl.querySelector('.play-hint').innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> CLICK TO HEAR ' + instructor.toUpperCase();
+      cardEl.querySelector('.play-hint').innerHTML = '<span class="audio-dot"></span> HEAR ' + instructor.toUpperCase();
     }
 
     function setPlayingHint(hint) {
-      hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg> PLAYING... (CLICK TO STOP)';
+      hint.innerHTML = '<span class="audio-dot"></span> PLAYING... (CLICK TO STOP)';
     }
 
     function showVoiceError(hint, cardEl, instructor) {
-      hint.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> VOICE TEMPORARILY UNAVAILABLE';
+      hint.innerHTML = '<span class="audio-dot" style="background:var(--text-3)"></span> TEMPORARILY UNAVAILABLE';
       cardEl.classList.remove('playing');
       isPlaying = false;
       currentCard = null;
