@@ -10,8 +10,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://psionictraining.com">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%2306060a' width='32' height='32'/><circle cx='16' cy='16' r='10' fill='none' stroke='%2322d3ee' stroke-width='2'/><circle cx='16' cy='16' r='4' fill='%2322d3ee'/></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%2306060a' width='180' height='180' rx='40'/><circle cx='90' cy='90' r='55' fill='none' stroke='%2322d3ee' stroke-width='10'/><circle cx='90' cy='90' r='22' fill='%2322d3ee'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%2306060a' width='32' height='32' rx='6'/><circle cx='16' cy='16' r='11' fill='none' stroke='%2322d3ee' stroke-width='1.5' opacity='0.5'/><circle cx='16' cy='16' r='6' fill='none' stroke='%2322d3ee' stroke-width='1.5' opacity='0.8'/><circle cx='16' cy='16' r='2.5' fill='%2322d3ee'/><line x1='16' y1='3' x2='16' y2='7' stroke='%2322d3ee' stroke-width='1.5' opacity='0.5'/><line x1='16' y1='25' x2='16' y2='29' stroke='%2322d3ee' stroke-width='1.5' opacity='0.5'/><line x1='3' y1='16' x2='7' y2='16' stroke='%2322d3ee' stroke-width='1.5' opacity='0.5'/><line x1='25' y1='16' x2='29' y2='16' stroke='%2322d3ee' stroke-width='1.5' opacity='0.5'/></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%2306060a' width='180' height='180' rx='40'/><circle cx='90' cy='90' r='62' fill='none' stroke='%2322d3ee' stroke-width='8' opacity='0.5'/><circle cx='90' cy='90' r='34' fill='none' stroke='%2322d3ee' stroke-width='8' opacity='0.8'/><circle cx='90' cy='90' r='14' fill='%2322d3ee'/><line x1='90' y1='16' x2='90' y2='42' stroke='%2322d3ee' stroke-width='8' opacity='0.5'/><line x1='90' y1='138' x2='90' y2='164' stroke='%2322d3ee' stroke-width='8' opacity='0.5'/><line x1='16' y1='90' x2='42' y2='90' stroke='%2322d3ee' stroke-width='8' opacity='0.5'/><line x1='138' y1='90' x2='164' y2='90' stroke='%2322d3ee' stroke-width='8' opacity='0.5'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -85,28 +85,29 @@
     }
     .particle {
       position: absolute;
-      width: 2px;
-      height: 2px;
+      width: 3px;
+      height: 3px;
       border-radius: 50%;
-      background: rgba(var(--accent-rgb), 0.3);
+      background: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 6px 1px rgba(var(--accent-rgb), 0.5);
       animation: particleFloat linear infinite;
     }
-    .particle:nth-child(1) { left: 5%; top: 20%; width: 3px; height: 3px; animation-duration: 18s; animation-delay: 0s; background: rgba(var(--accent-rgb), 0.2); }
-    .particle:nth-child(2) { left: 15%; top: 60%; animation-duration: 22s; animation-delay: -3s; background: rgba(var(--green-rgb), 0.25); }
-    .particle:nth-child(3) { left: 25%; top: 40%; width: 3px; height: 3px; animation-duration: 20s; animation-delay: -6s; background: rgba(var(--purple-rgb), 0.2); }
-    .particle:nth-child(4) { left: 35%; top: 80%; animation-duration: 25s; animation-delay: -2s; background: rgba(var(--accent-rgb), 0.15); }
-    .particle:nth-child(5) { left: 45%; top: 15%; width: 3px; height: 3px; animation-duration: 19s; animation-delay: -8s; background: rgba(var(--green-rgb), 0.2); }
-    .particle:nth-child(6) { left: 55%; top: 50%; animation-duration: 23s; animation-delay: -4s; background: rgba(var(--purple-rgb), 0.25); }
-    .particle:nth-child(7) { left: 65%; top: 30%; animation-duration: 21s; animation-delay: -10s; background: rgba(var(--accent-rgb), 0.2); }
-    .particle:nth-child(8) { left: 75%; top: 70%; width: 3px; height: 3px; animation-duration: 17s; animation-delay: -1s; background: rgba(var(--green-rgb), 0.15); }
-    .particle:nth-child(9) { left: 85%; top: 10%; animation-duration: 24s; animation-delay: -7s; background: rgba(var(--purple-rgb), 0.2); }
-    .particle:nth-child(10) { left: 92%; top: 45%; animation-duration: 20s; animation-delay: -5s; background: rgba(var(--accent-rgb), 0.25); }
-    .particle:nth-child(11) { left: 10%; top: 90%; width: 3px; height: 3px; animation-duration: 26s; animation-delay: -9s; background: rgba(var(--green-rgb), 0.2); }
-    .particle:nth-child(12) { left: 50%; top: 75%; animation-duration: 18s; animation-delay: -12s; background: rgba(var(--purple-rgb), 0.15); }
-    .particle:nth-child(13) { left: 30%; top: 5%; animation-duration: 22s; animation-delay: -11s; background: rgba(var(--accent-rgb), 0.2); }
-    .particle:nth-child(14) { left: 70%; top: 55%; width: 3px; height: 3px; animation-duration: 19s; animation-delay: -6s; background: rgba(var(--green-rgb), 0.25); }
-    .particle:nth-child(15) { left: 40%; top: 35%; animation-duration: 24s; animation-delay: -3s; background: rgba(var(--purple-rgb), 0.2); }
-    .particle:nth-child(16) { left: 80%; top: 85%; animation-duration: 21s; animation-delay: -14s; background: rgba(var(--accent-rgb), 0.15); }
+    .particle:nth-child(1) { left: 5%; top: 20%; width: 4px; height: 4px; animation-duration: 18s; animation-delay: 0s; background: rgba(var(--accent-rgb), 0.7); box-shadow: 0 0 8px 2px rgba(var(--accent-rgb), 0.5); }
+    .particle:nth-child(2) { left: 15%; top: 60%; width: 3px; height: 3px; animation-duration: 22s; animation-delay: -3s; background: rgba(var(--green-rgb), 0.65); box-shadow: 0 0 6px 1px rgba(var(--green-rgb), 0.5); }
+    .particle:nth-child(3) { left: 25%; top: 40%; width: 4px; height: 4px; animation-duration: 20s; animation-delay: -6s; background: rgba(var(--purple-rgb), 0.6); box-shadow: 0 0 8px 2px rgba(var(--purple-rgb), 0.45); }
+    .particle:nth-child(4) { left: 35%; top: 80%; width: 3px; height: 3px; animation-duration: 25s; animation-delay: -2s; background: rgba(var(--accent-rgb), 0.55); box-shadow: 0 0 6px 1px rgba(var(--accent-rgb), 0.4); }
+    .particle:nth-child(5) { left: 45%; top: 15%; width: 5px; height: 5px; animation-duration: 19s; animation-delay: -8s; background: rgba(var(--green-rgb), 0.6); box-shadow: 0 0 10px 2px rgba(var(--green-rgb), 0.5); }
+    .particle:nth-child(6) { left: 55%; top: 50%; width: 3px; height: 3px; animation-duration: 23s; animation-delay: -4s; background: rgba(var(--purple-rgb), 0.65); box-shadow: 0 0 6px 1px rgba(var(--purple-rgb), 0.5); }
+    .particle:nth-child(7) { left: 65%; top: 30%; width: 4px; height: 4px; animation-duration: 21s; animation-delay: -10s; background: rgba(var(--accent-rgb), 0.7); box-shadow: 0 0 8px 2px rgba(var(--accent-rgb), 0.55); }
+    .particle:nth-child(8) { left: 75%; top: 70%; width: 3px; height: 3px; animation-duration: 17s; animation-delay: -1s; background: rgba(var(--green-rgb), 0.55); box-shadow: 0 0 6px 1px rgba(var(--green-rgb), 0.4); }
+    .particle:nth-child(9) { left: 85%; top: 10%; width: 4px; height: 4px; animation-duration: 24s; animation-delay: -7s; background: rgba(var(--purple-rgb), 0.6); box-shadow: 0 0 8px 2px rgba(var(--purple-rgb), 0.45); }
+    .particle:nth-child(10) { left: 92%; top: 45%; width: 3px; height: 3px; animation-duration: 20s; animation-delay: -5s; background: rgba(var(--accent-rgb), 0.65); box-shadow: 0 0 6px 2px rgba(var(--accent-rgb), 0.5); }
+    .particle:nth-child(11) { left: 10%; top: 90%; width: 5px; height: 5px; animation-duration: 26s; animation-delay: -9s; background: rgba(var(--green-rgb), 0.6); box-shadow: 0 0 10px 2px rgba(var(--green-rgb), 0.5); }
+    .particle:nth-child(12) { left: 50%; top: 75%; width: 3px; height: 3px; animation-duration: 18s; animation-delay: -12s; background: rgba(var(--purple-rgb), 0.55); box-shadow: 0 0 6px 1px rgba(var(--purple-rgb), 0.4); }
+    .particle:nth-child(13) { left: 30%; top: 5%; width: 4px; height: 4px; animation-duration: 22s; animation-delay: -11s; background: rgba(var(--accent-rgb), 0.7); box-shadow: 0 0 8px 2px rgba(var(--accent-rgb), 0.55); }
+    .particle:nth-child(14) { left: 70%; top: 55%; width: 3px; height: 3px; animation-duration: 19s; animation-delay: -6s; background: rgba(var(--green-rgb), 0.65); box-shadow: 0 0 6px 1px rgba(var(--green-rgb), 0.5); }
+    .particle:nth-child(15) { left: 40%; top: 35%; width: 4px; height: 4px; animation-duration: 24s; animation-delay: -3s; background: rgba(var(--purple-rgb), 0.6); box-shadow: 0 0 8px 2px rgba(var(--purple-rgb), 0.45); }
+    .particle:nth-child(16) { left: 80%; top: 85%; width: 3px; height: 3px; animation-duration: 21s; animation-delay: -14s; background: rgba(var(--accent-rgb), 0.55); box-shadow: 0 0 6px 1px rgba(var(--accent-rgb), 0.4); }
 
     @keyframes particleFloat {
       0% { transform: translateY(0) translateX(0); opacity: 0; }
@@ -177,13 +178,20 @@
       .nav-links a:not(.nav-cta) { display: none; }
     }
     @media (max-width: 480px) {
-      .nav { padding: 0 12px; }
-      .nav-cta { padding: 7px 14px !important; font-size: 12px !important; white-space: nowrap; }
+      .nav { padding: 0 16px; }
+      .nav-cta { padding: 9px 18px !important; font-size: 13px !important; white-space: nowrap; }
       .nav-logo-text { display: none; }
       .nav-cta-full { display: none; }
       .nav-cta-short { display: inline; }
     }
     .nav-cta-short { display: none; }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-sub { font-size: 16px; }
+      .hero-proof { gap: 20px; }
+    }
 
     /* ── SECTIONS ── */
     section { position: relative; z-index: 1; }
@@ -1398,9 +1406,14 @@
   <nav class="nav">
     <a href="/" class="nav-logo">
       <div class="nav-logo-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2a8 8 0 0 1 8 8c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 8-8z"/>
-          <circle cx="12" cy="10" r="3"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round">
+          <circle cx="12" cy="12" r="8" stroke-width="1.5" opacity="0.55"/>
+          <circle cx="12" cy="12" r="4.5" stroke-width="1.5" opacity="0.85"/>
+          <circle cx="12" cy="12" r="1.8" fill="white" stroke="none"/>
+          <line x1="12" y1="2.5" x2="12" y2="5.5" stroke-width="1.5" opacity="0.55"/>
+          <line x1="12" y1="18.5" x2="12" y2="21.5" stroke-width="1.5" opacity="0.55"/>
+          <line x1="2.5" y1="12" x2="5.5" y2="12" stroke-width="1.5" opacity="0.55"/>
+          <line x1="18.5" y1="12" x2="21.5" y2="12" stroke-width="1.5" opacity="0.55"/>
         </svg>
       </div>
       <span class="nav-logo-text">PSIONIC TRAINING</span>
