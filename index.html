@@ -57,6 +57,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
+      overflow: hidden;
     }
     .atmosphere::before {
       content: '';
@@ -214,6 +215,7 @@
       text-align: center;
       padding: 100px 24px 48px;
       position: relative;
+      overflow: hidden;
     }
     .hero-rings {
       position: absolute;
@@ -221,6 +223,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
+      overflow: hidden;
     }
     .hero-ring {
       position: absolute;
@@ -1454,11 +1457,7 @@
       .courses-grid { grid-template-columns: 1fr !important; }
     }
   </style>
-  <!-- MailerLite (psionicresearch.com newsletter) -->
-  <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '2348934');
-  </script>
+  <!-- MailerLite: embed-only, no Universal script (Universal loads account-wide popups which pollute other sites) -->
 </head>
 <body>
 
@@ -2058,9 +2057,7 @@
             Start Free Training
           </a>
           <div class="cta-note">
-            <p>PURSUE file analysis, training insights, and course launch notifications — in your inbox.</p>
-            <div class="ml-embedded" data-form="vRwBCQ" style="margin-top:12px;"></div>
-            <p class="form-note">No spam. Unsubscribe anytime.</p>
+            <p style="color:var(--text-3);font-size:13px;">No credit card. Cancel anytime. Your data is private.</p>
           </div>
         </div>
 
