@@ -1174,7 +1174,7 @@
       z-index: 1;
     }
     .cta-instructors-col {
-      flex: 0 0 280px;
+      flex: 0 0 220px;
       position: relative;
       overflow: hidden;
       background: linear-gradient(180deg, rgba(34,211,238,0.06) 0%, rgba(74,222,128,0.03) 50%, rgba(167,139,250,0.04) 100%);
@@ -1361,10 +1361,28 @@
       .cta-card { flex-direction: column; }
       .cta-instructors-col {
         flex: none;
-        height: 220px;
+        height: 130px;
+        width: 100%;
         border-right: none;
         border-bottom: 1px solid rgba(var(--accent-rgb),0.1);
       }
+      /* Horizontal stack on mobile — three equal columns side by side */
+      .cta-stack {
+        flex-direction: row;
+      }
+      .cta-stack-item + .cta-stack-item {
+        border-top: none;
+        border-left: 1px solid rgba(255,255,255,0.06);
+      }
+      .cta-stack-item img {
+        object-position: center 15%;
+      }
+      .cta-stack-label {
+        font-size: 8px;
+        padding: 10px 8px 6px;
+        letter-spacing: 0.1em;
+      }
+      .cta-stack-label span { display: none; }
       .cta-carousel { width: 160px; height: 185px; }
       .cta-carousel-slide img { height: 175px; }
       .cta-content-col { padding: 36px 24px 40px; text-align: center; }
@@ -1647,7 +1665,7 @@
             </div>
           </div>
           <p class="instructor-desc">
-            Veil works at the edge of the documented dataset. PURSUE files, contact protocols, anomalous craft RV. Access is earned, not bought: 21 sessions, 50% average accuracy, and 5 Lyra calibrations unlock his channel.
+            Veil works at the edge of the documented dataset. PURSUE files, contact protocols, anomalous craft RV. Access is earned, not bought — 21 sessions, 50% average accuracy, and 5 Lyra calibrations unlock the channel.
           </p>
           <div class="instructor-tags">
             <span class="instructor-tag">PURSUE Files</span>
@@ -1995,9 +2013,9 @@
           <ul class="pricing-features">
             <li>3 Akash CRV sessions per week</li>
             <li>1 Lyra Coherence Drill per week</li>
+            <li>3 voice sessions per week (Akash + Lyra combined)</li>
+            <li>Full 6-dimension AI scoring</li>
             <li>Last 5 sessions visible in history</li>
-            <li>Text-only instructor coaching</li>
-            <li>Full 6-dimension scoring</li>
           </ul>
           <a href="https://app.psionictraining.com/login" class="btn btn-ghost pricing-cta">Start Free</a>
         </div>
@@ -2011,18 +2029,18 @@
           <ul class="pricing-features">
             <li>Unlimited Akash CRV sessions</li>
             <li>Unlimited Lyra Coherence Drills</li>
+            <li>Unlimited voice sessions</li>
             <li>Full unlimited session history</li>
-            <li>Voice instructor playback</li>
             <li>+10% XP combo bonus (Lyra → Akash within 30 min)</li>
             <li>Achievement tracking + rank progression</li>
-            <li>Veil channel unlocks when you earn Asset rank</li>
+            <li>Veil's channel opens at Asset rank — contact protocols, anomalous phenomena, the edge of what's documented</li>
           </ul>
           <a href="https://app.psionictraining.com/login" class="btn btn-primary pricing-cta">Start as Operative</a>
         </div>
 
       </div>
       <p class="pricing-footnote fade-in">
-        Asset is a rank you earn — 21 sessions, 50% avg accuracy, 5 Lyra calibrations. Veil's channel opens when your signal is ready. We won't sell access to work you haven't built the foundation for.
+        Asset is a rank you earn — 21 sessions, 50% avg accuracy, 5 Lyra calibrations. Veil's channel opens when your signal is ready. Access is earned, not sold. We will not give you Veil before you have built the foundation to use what Veil offers.
       </p>
     </div>
   </section>
