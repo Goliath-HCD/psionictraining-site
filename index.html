@@ -181,15 +181,42 @@
     }
     .nav-cta:hover { box-shadow: 0 0 30px rgba(var(--accent-rgb),0.5) !important; transform: translateY(-1px); }
 
+    /* Mobile nav — replace pill with two plain text links */
+    .nav-signin { display: none; }
     @media (max-width: 768px) {
-      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links a:not(.nav-cta):not(.nav-signin) { display: none; }
+      /* Sign In — plain text */
+      .nav-signin {
+        display: inline;
+        font-size: 13px;
+        color: var(--text-2);
+        text-decoration: none;
+        padding: 0;
+        background: none;
+        border: none;
+        box-shadow: none;
+        letter-spacing: 0;
+        border-radius: 0;
+      }
+      .nav-signin:hover { color: var(--text-1); }
+      /* Try Free — accent text, no pill */
+      .nav-cta {
+        padding: 0 !important;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: var(--accent) !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0 !important;
+        border-radius: 0 !important;
+      }
+      .nav-cta-full { display: inline !important; }
+      .nav-cta-short { display: none !important; }
     }
     @media (max-width: 480px) {
       .nav { padding: 0 16px; }
-      .nav-cta { padding: 9px 18px !important; font-size: 13px !important; white-space: nowrap; }
       .nav-logo-text { display: none; }
-      .nav-cta-full { display: none; }
-      .nav-cta-short { display: inline; }
     }
     .nav-cta-short { display: none; }
 
@@ -1517,7 +1544,8 @@
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="https://psionicresearch.com" target="_blank">Research</a>
-      <a href="https://app.psionictraining.com/login" class="nav-cta"><span class="nav-cta-full">Start Training Free</span><span class="nav-cta-short">Start Free</span></a>
+      <a href="https://app.psionictraining.com/login" class="nav-signin">Sign In</a>
+      <a href="https://app.psionictraining.com/login" class="nav-cta"><span class="nav-cta-full">Try Free</span><span class="nav-cta-short">Try Free</span></a>
     </div>
   </nav>
 
