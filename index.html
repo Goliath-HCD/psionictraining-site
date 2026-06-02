@@ -1612,13 +1612,13 @@
   <!-- Instructors -->
   <section class="instructors-section" id="instructors">
     <div class="container">
-      <!-- Instructor composite — all three speaking, extracted from marketing video -->
+      <!-- Instructor composite -->
       <div class="fade-in" style="text-align:center; margin-bottom: 40px;">
-        <img src="./assets/instructors-composite.jpg"
+        <img src="./assets/instructors-composite.png"
           alt="Akash, Lyra, and Veil — three AI instructors"
           style="max-width: 900px; width: 100%; border-radius: 16px; box-shadow: 0 0 60px rgba(34,211,238,0.12);">
       </div>
-      <p class="section-label fade-in">Choose Your Guide</p>
+      <p class="section-label fade-in">Uniquely Developed AI Trainers</p>
       <h2 class="section-title fade-in">Three Instructors. Three Areas of Expertise.</h2>
       <p class="section-sub fade-in">
         Each instructor specializes in a different domain of the protocol. Train with all three to develop a complete skill stack.
@@ -1634,7 +1634,7 @@
       </div>
 
       <div class="instructor-grid">
-        <div class="instructor-card akash fade-in" onclick="playVoiceSample('akash', this)">
+        <div class="instructor-card akash fade-in" onclick="openVideoModal('akash')" style="cursor:pointer">
           <div class="card-header">
             <div class="instructor-avatar">
               <img src="./assets/akash.png" alt="Akash - CRV Training Officer" loading="lazy">
@@ -1655,11 +1655,11 @@
             <span class="instructor-tag">Analytical</span>
           </div>
           <div class="play-hint">
-            <span class="audio-dot"></span>
-            HEAR AKASH
+            <span style="margin-right:6px">▶</span>
+            WATCH INTRO
           </div>
         </div>
-        <div class="instructor-card lyra fade-in" onclick="playVoiceSample('lyra', this)">
+        <div class="instructor-card lyra fade-in" onclick="openVideoModal('lyra')" style="cursor:pointer">
           <div class="card-header">
             <div class="instructor-avatar">
               <img src="./assets/lyra.png" alt="Lyra - Consciousness Guide" loading="lazy">
@@ -1680,11 +1680,11 @@
             <span class="instructor-tag">Signal vs Noise</span>
           </div>
           <div class="play-hint">
-            <span class="audio-dot"></span>
-            HEAR LYRA
+            <span style="margin-right:6px">▶</span>
+            WATCH INTRO
           </div>
         </div>
-        <div class="instructor-card veil fade-in" onclick="playVoiceSample('veil', this)">
+        <div class="instructor-card veil fade-in" onclick="openVideoModal('veil')" style="cursor:pointer">
           <div class="card-header">
             <div class="instructor-avatar">
               <img src="./assets/veil.png" alt="Veil - Contact Specialist" loading="lazy">
@@ -1705,8 +1705,8 @@
             <span class="instructor-tag">Skill-Walled</span>
           </div>
           <div class="play-hint">
-            <span class="audio-dot"></span>
-            HEAR VEIL
+            <span style="margin-right:6px">▶</span>
+            WATCH INTRO
           </div>
         </div>
       </div>
@@ -2043,10 +2043,19 @@
   <section class="pricing-section" id="pricing">
     <div class="container">
       <p class="section-label fade-in">Plans</p>
-      <h2 class="section-title fade-in"><span style="color:var(--accent)">Free</span> to start. One paid tier.</h2>
-      <p class="section-sub fade-in">
-        Upgrade when unlimited sessions and voice coaching become the bottleneck. Veil is earned, not bought.
-      </p>
+      <h2 class="section-title fade-in"><span style="color:var(--accent)">Free to start.</span> One paid tier.</h2>
+      <p class="section-sub fade-in">Access to Veil in the app can only be earned, not bought.</p>
+
+      <!-- Annual/monthly toggle -->
+      <div class="fade-in" style="display:flex;align-items:center;justify-content:center;gap:12px;margin:24px 0 32px;">
+        <span id="toggle-monthly-label" style="font-family:monospace;font-size:13px;color:var(--accent);">Monthly</span>
+        <button onclick="toggleBilling()" id="billing-toggle"
+          style="width:48px;height:26px;border-radius:13px;border:1px solid rgba(34,211,238,0.3);background:rgba(34,211,238,0.08);cursor:pointer;position:relative;transition:background 0.2s;">
+          <span id="billing-knob" style="position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--accent);transition:left 0.2s;"></span>
+        </button>
+        <span id="toggle-annual-label" style="font-family:monospace;font-size:13px;color:var(--text-3);">Annual <span style="color:#4ade80;font-size:11px;">Save $38</span></span>
+      </div>
+
       <div class="pricing-grid">
 
         <!-- FREE -->
@@ -2068,7 +2077,10 @@
         <div class="pricing-card pricing-card-featured fade-in">
           <div class="pricing-tier-badge">Operative</div>
           <div class="pricing-tier-label">Operative</div>
-          <div class="pricing-price"><span class="pricing-amount">$19</span><span class="pricing-period">/month</span></div>
+          <div class="pricing-price">
+            <span class="pricing-amount" id="price-amount">$19</span><span class="pricing-period" id="price-period">/month</span>
+          </div>
+          <div id="price-annual-note" style="display:none;font-size:12px;color:#4ade80;font-family:monospace;margin-bottom:4px;">$190 billed once yearly</div>
           <p class="pricing-tagline">For serious daily training.</p>
           <ul class="pricing-features">
             <li>Unlimited Akash CRV sessions</li>
@@ -2077,15 +2089,12 @@
             <li>Full unlimited session history</li>
             <li>+10% XP combo bonus (Lyra → Akash within 30 min)</li>
             <li>Achievement tracking + rank progression</li>
-            <li>Veil's channel opens at Asset rank — contact protocols, anomalous phenomena, the edge of what's documented</li>
+            <li>Veil access is earned through training — 21 sessions, 50% accuracy, 5 Lyra calibrations</li>
           </ul>
-          <a href="https://app.psionictraining.com/login" class="btn btn-primary pricing-cta">Start as Operative</a>
+          <a id="pricing-cta" href="https://app.psionictraining.com/login" class="btn btn-primary pricing-cta">Start as Operative</a>
         </div>
 
       </div>
-      <p class="pricing-footnote fade-in">
-        Asset is a rank you earn — 21 sessions, 50% avg accuracy, 5 Lyra calibrations. Veil's channel opens when your signal is ready. Access is earned, not sold. We will not give you Veil before you have built the foundation to use what Veil offers.
-      </p>
     </div>
   </section>
 
@@ -2333,6 +2342,57 @@
     }
   </script>
 
+  <!-- Video modal -->
+  <div id="video-modal" onclick="closeVideoModal()" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:20px;">
+    <div onclick="event.stopPropagation()" style="position:relative;width:100%;max-width:720px;">
+      <button onclick="closeVideoModal()" style="position:absolute;top:-40px;right:0;background:none;border:none;color:rgba(255,255,255,0.6);font-size:28px;cursor:pointer;line-height:1;">×</button>
+      <video id="modal-video" controls playsinline style="width:100%;border-radius:12px;display:block;"></video>
+    </div>
+  </div>
+
+  <script>
+    // Video modal
+    const VIDEOS = {
+      akash: './assets/Akash_Marketing_Short_v1.mp4',
+      lyra:  './assets/Lyra_Marketing_Short_v1.mp4',
+      veil:  './assets/Veil_Marketing_Short_v1.mp4',
+    }
+    function openVideoModal(instructor) {
+      const modal = document.getElementById('video-modal')
+      const video = document.getElementById('modal-video')
+      video.src = VIDEOS[instructor]
+      modal.style.display = 'flex'
+      video.play()
+      document.body.style.overflow = 'hidden'
+    }
+    function closeVideoModal() {
+      const modal = document.getElementById('video-modal')
+      const video = document.getElementById('modal-video')
+      video.pause()
+      video.src = ''
+      modal.style.display = 'none'
+      document.body.style.overflow = ''
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal() })
+
+    // Billing toggle
+    let isAnnual = false
+    function toggleBilling() {
+      isAnnual = !isAnnual
+      const knob = document.getElementById('billing-knob')
+      const monthly = document.getElementById('toggle-monthly-label')
+      const annual = document.getElementById('toggle-annual-label')
+      const amount = document.getElementById('price-amount')
+      const period = document.getElementById('price-period')
+      const note = document.getElementById('price-annual-note')
+      knob.style.left = isAnnual ? '27px' : '3px'
+      monthly.style.color = isAnnual ? 'var(--text-3)' : 'var(--accent)'
+      annual.style.color = isAnnual ? 'var(--accent)' : 'var(--text-3)'
+      amount.textContent = isAnnual ? '$190' : '$19'
+      period.textContent = isAnnual ? '/year' : '/month'
+      note.style.display = isAnnual ? 'block' : 'none'
+    }
+  </script>
 
 </body>
 </html>
