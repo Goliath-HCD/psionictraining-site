@@ -2395,12 +2395,17 @@
       const amount = document.getElementById('price-amount')
       const period = document.getElementById('price-period')
       const note = document.getElementById('price-annual-note')
+      const cta = document.getElementById('pricing-cta')
       knob.style.left = isAnnual ? '27px' : '3px'
       monthly.style.color = isAnnual ? 'var(--text-3)' : 'var(--accent)'
       annual.style.color = isAnnual ? 'var(--accent)' : 'var(--text-3)'
       amount.textContent = isAnnual ? '$190' : '$19'
       period.textContent = isAnnual ? '/year' : '/month'
       note.style.display = isAnnual ? 'block' : 'none'
+      cta.href = isAnnual
+        ? 'https://app.psionictraining.com/login?plan=annual'
+        : 'https://app.psionictraining.com/login'
+      cta.textContent = isAnnual ? 'Start as Operative — $190/yr' : 'Start as Operative'
     }
   </script>
 
