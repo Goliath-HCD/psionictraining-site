@@ -2353,9 +2353,10 @@
 
   <!-- Video modal -->
   <div id="video-modal" onclick="closeVideoModal()" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:20px;">
-    <div onclick="event.stopPropagation()" style="position:relative;width:100%;max-width:720px;">
-      <button onclick="closeVideoModal()" style="position:absolute;top:-40px;right:0;background:none;border:none;color:rgba(255,255,255,0.6);font-size:28px;cursor:pointer;line-height:1;">×</button>
-      <video id="modal-video" controls playsinline onclick="event.stopPropagation()" onended="closeVideoModal()" style="width:100%;border-radius:12px;display:block;"></video>
+    <div onclick="event.stopPropagation()" style="position:relative;display:flex;flex-direction:column;align-items:center;">
+      <button onclick="closeVideoModal()" style="align-self:flex-end;margin-bottom:8px;background:none;border:none;color:rgba(255,255,255,0.6);font-size:28px;cursor:pointer;line-height:1;">×</button>
+      <video id="modal-video" controls playsinline onclick="event.stopPropagation()" onended="closeVideoModal()"
+        style="max-height:82vh;width:auto;max-width:min(100vw - 40px, 420px);border-radius:12px;display:block;"></video>
     </div>
   </div>
 
