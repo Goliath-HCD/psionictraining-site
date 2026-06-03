@@ -216,7 +216,6 @@
     }
     @media (max-width: 480px) {
       .nav { padding: 0 16px; }
-      .nav-logo-text { display: none; }
     }
     .nav-cta-short { display: none; }
 
@@ -282,12 +281,12 @@
       gap: 8px;
       padding: 6px 16px;
       border-radius: 100px;
-      background: rgba(var(--accent-rgb),0.08);
-      border: 1px solid rgba(var(--accent-rgb),0.2);
+      background: rgba(var(--accent-rgb),0.05);
+      border: 1px solid rgba(var(--accent-rgb),0.15);
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.1em;
-      color: var(--accent);
+      color: rgba(34,211,238,0.55);
       margin-bottom: 32px;
     }
     .hero-badge-dot {
@@ -1558,7 +1557,6 @@
       <a href="#instructors">Instructors</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <a href="https://psionicresearch.com" target="_blank">Research</a>
       <a href="https://app.psionictraining.com/login" class="nav-signin">Sign In</a>
       <a href="https://app.psionictraining.com/login" class="nav-cta"><span class="nav-cta-full">Try Free</span><span class="nav-cta-short">Try Free</span></a>
     </div>
@@ -1589,7 +1587,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           Start Your First Session
         </a>
-        <a href="#instructors" class="btn btn-ghost">Meet the Instructors</a>
+        <a href="#instructors" class="btn btn-ghost" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.15);">Meet the Instructors</a>
       </div>
       <div class="hero-proof">
         <div class="hero-proof-item">
@@ -2046,16 +2044,6 @@
       <h2 class="section-title fade-in"><span style="color:var(--accent)">Free to start.</span> One paid tier.</h2>
       <p class="section-sub fade-in">Access to Veil in the app can only be earned, not bought.</p>
 
-      <!-- Annual/monthly toggle -->
-      <div class="fade-in" style="display:flex;align-items:center;justify-content:center;gap:12px;margin:24px 0 32px;">
-        <span id="toggle-monthly-label" style="font-family:monospace;font-size:13px;color:var(--accent);">Monthly</span>
-        <button onclick="toggleBilling()" id="billing-toggle"
-          style="width:48px;height:26px;border-radius:13px;border:1px solid rgba(34,211,238,0.3);background:rgba(34,211,238,0.08);cursor:pointer;position:relative;transition:background 0.2s;">
-          <span id="billing-knob" style="position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--accent);transition:left 0.2s;"></span>
-        </button>
-        <span id="toggle-annual-label" style="font-family:monospace;font-size:13px;color:var(--text-3);">Annual <span style="color:#4ade80;font-size:11px;">Save $38</span></span>
-      </div>
-
       <div class="pricing-grid">
 
         <!-- FREE -->
@@ -2077,6 +2065,15 @@
         <div class="pricing-card pricing-card-featured fade-in">
           <div class="pricing-tier-badge">Operative</div>
           <div class="pricing-tier-label">Operative</div>
+          <!-- Annual/monthly toggle — lives inside this card -->
+          <div style="display:flex;align-items:center;gap:10px;margin:12px 0 4px;">
+            <span id="toggle-monthly-label" style="font-family:monospace;font-size:12px;color:var(--accent);">Monthly</span>
+            <button onclick="toggleBilling()" id="billing-toggle"
+              style="width:44px;height:24px;border-radius:12px;border:1px solid rgba(34,211,238,0.3);background:rgba(34,211,238,0.08);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
+              <span id="billing-knob" style="position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--accent);transition:left 0.2s;"></span>
+            </button>
+            <span id="toggle-annual-label" style="font-family:monospace;font-size:12px;color:var(--text-3);">Annual <span style="color:#4ade80;font-size:10px;">Save $38</span></span>
+          </div>
           <div class="pricing-price">
             <span class="pricing-amount" id="price-amount">$19</span><span class="pricing-period" id="price-period">/month</span>
           </div>
@@ -2146,7 +2143,6 @@
     <div class="container">
       <div class="footer-links">
         <a href="https://app.psionictraining.com">Sign in</a>
-        <a href="https://psionicresearch.com">Research</a>
         <a href="https://app.psionictraining.com/terms">Terms</a>
         <a href="https://app.psionictraining.com/privacy">Privacy</a>
       </div>
