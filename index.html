@@ -2356,7 +2356,7 @@
   <div id="video-modal" onclick="closeVideoModal()" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:20px;">
     <div onclick="event.stopPropagation()" style="position:relative;width:100%;max-width:720px;">
       <button onclick="closeVideoModal()" style="position:absolute;top:-40px;right:0;background:none;border:none;color:rgba(255,255,255,0.6);font-size:28px;cursor:pointer;line-height:1;">×</button>
-      <video id="modal-video" controls playsinline style="width:100%;border-radius:12px;display:block;"></video>
+      <video id="modal-video" controls playsinline onclick="event.stopPropagation()" style="width:100%;border-radius:12px;display:block;"></video>
     </div>
   </div>
 
@@ -2372,8 +2372,9 @@
       const video = document.getElementById('modal-video')
       video.src = VIDEOS[instructor]
       modal.style.display = 'flex'
-      video.play()
       document.body.style.overflow = 'hidden'
+      // Don't call play() — let the user tap the native controls.
+      // Mobile browsers block programmatic play() without direct gesture.
     }
     function closeVideoModal() {
       const modal = document.getElementById('video-modal')
