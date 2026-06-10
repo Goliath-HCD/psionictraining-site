@@ -2101,7 +2101,7 @@
             <li>Achievement tracking + rank progression</li>
             <li>Veil access is earned through training — 21 sessions, 50% accuracy, 5 Lyra calibrations</li>
           </ul>
-          <a id="pricing-cta" href="https://app.psionictraining.com/login" class="btn btn-primary pricing-cta">Start as Operative</a>
+          <a id="pricing-cta" href="https://app.psionictraining.com/login?plan=monthly" class="btn btn-primary pricing-cta">Start as Operative</a>
         </div>
 
       </div>
@@ -2405,8 +2405,8 @@
       period.textContent = isAnnual ? '/year' : '/month'
       note.style.display = isAnnual ? 'block' : 'none'
       cta.href = isAnnual
-        ? 'https://app.psionictraining.com/login?plan=annual'
-        : 'https://app.psionictraining.com/login'
+        ? 'https://app.psionictraining.com/login?plan=yearly'
+        : 'https://app.psionictraining.com/login?plan=monthly'
       cta.textContent = isAnnual ? 'Start as Operative — $190/yr' : 'Start as Operative'
     }
   </script>
