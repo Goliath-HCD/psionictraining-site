@@ -1521,6 +1521,9 @@
       opacity: 1;
       transform: translateY(0);
     }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
@@ -1600,6 +1603,9 @@
         <a href="https://app.psionictraining.com/login" class="btn btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           Start Your First Session
+        </a>
+        <a href="https://app.psionictraining.com/app" style="display:block;margin-top:14px;font-family:monospace;font-size:12px;letter-spacing:0.06em;color:var(--text-3);text-decoration:underline;text-underline-offset:3px;">
+          or try a sample session first — no account needed
         </a>
       </div>
       <div class="hero-proof">
@@ -2172,9 +2178,10 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0, rootMargin: '0px 0px 25% 0px' });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
