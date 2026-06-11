@@ -2065,11 +2065,11 @@
           <div class="pricing-price"><span class="pricing-amount">Free</span></div>
           <p class="pricing-tagline">Start training today. No card required.</p>
           <ul class="pricing-features">
-            <li>3 Akash CRV sessions per week</li>
-            <li>1 Lyra Coherence Drill per week</li>
-            <li>3 voice sessions per week (Akash + Lyra combined)</li>
+            <li>21-day Assessment Period: unlimited sessions</li>
+            <li>All instructors' core drills with voice</li>
+            <li>After assessment: 1 session per week</li>
             <li>Full 6-dimension AI scoring</li>
-            <li>Last 5 sessions visible in history</li>
+            <li>Full session history</li>
           </ul>
           <a href="https://app.psionictraining.com/login" class="btn btn-ghost pricing-cta">Start Free</a>
         </div>
@@ -2080,17 +2080,17 @@
           <div class="pricing-tier-label">Operative</div>
           <!-- Annual/monthly toggle — lives inside this card -->
           <div style="display:flex;align-items:center;gap:10px;margin:12px 0 4px;">
-            <span id="toggle-monthly-label" style="font-family:monospace;font-size:12px;color:var(--accent);">Monthly</span>
+            <span id="toggle-monthly-label" style="font-family:monospace;font-size:12px;color:var(--text-3);">Monthly</span>
             <button onclick="toggleBilling()" id="billing-toggle"
               style="width:44px;height:24px;border-radius:12px;border:1px solid rgba(34,211,238,0.3);background:rgba(34,211,238,0.08);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
-              <span id="billing-knob" style="position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--accent);transition:left 0.2s;"></span>
+              <span id="billing-knob" style="position:absolute;top:3px;left:27px;width:16px;height:16px;border-radius:50%;background:var(--accent);transition:left 0.2s;"></span>
             </button>
-            <span id="toggle-annual-label" style="font-family:monospace;font-size:12px;color:var(--text-3);">Annual <span style="color:#4ade80;font-size:10px;">Save $38</span></span>
+            <span id="toggle-annual-label" style="font-family:monospace;font-size:12px;color:var(--accent);">Annual <span style="color:#4ade80;font-size:10px;">2 months free</span></span>
           </div>
           <div class="pricing-price">
-            <span class="pricing-amount" id="price-amount">$19</span><span class="pricing-period" id="price-period">/month</span>
+            <span class="pricing-amount" id="price-amount">$190</span><span class="pricing-period" id="price-period">/year</span>
           </div>
-          <div id="price-annual-note" style="display:none;font-size:12px;color:#4ade80;font-family:monospace;margin-bottom:4px;">$190 billed once yearly</div>
+          <div id="price-annual-note" style="display:block;font-size:12px;color:#4ade80;font-family:monospace;margin-bottom:4px;">$190 billed once yearly</div>
           <p class="pricing-tagline">For serious daily training.</p>
           <ul class="pricing-features">
             <li>Unlimited Akash CRV sessions</li>
@@ -2101,7 +2101,7 @@
             <li>Achievement tracking + rank progression</li>
             <li>Veil access is earned through training — 21 sessions, 50% accuracy, 5 Lyra calibrations</li>
           </ul>
-          <a id="pricing-cta" href="https://app.psionictraining.com/login?plan=monthly" class="btn btn-primary pricing-cta">Start as Operative</a>
+          <a id="pricing-cta" href="https://app.psionictraining.com/login?plan=yearly" class="btn btn-primary pricing-cta">Start as Operative — $190/yr</a>
         </div>
 
       </div>
@@ -2137,7 +2137,7 @@
         <!-- Text + CTA column -->
         <div class="cta-content-col">
           <h2>Ready to See What Your Mind Can Do?</h2>
-          <p>Akash, Lyra, or Veil walk you through every phase of a real CRV session — scored by AI, tracked over time. Three free sessions per week. No credit card.</p>
+          <p>Akash, Lyra, or Veil walk you through every phase of a real CRV session — scored by AI, tracked over time. Free 21-day Assessment Period, unlimited sessions. No credit card.</p>
           <a href="https://app.psionictraining.com/login" class="btn btn-primary" style="display:inline-flex;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             Start Free Training
@@ -2388,7 +2388,7 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal() })
 
     // Billing toggle
-    let isAnnual = false
+    let isAnnual = true
     function toggleBilling() {
       isAnnual = !isAnnual
       const knob = document.getElementById('billing-knob')
