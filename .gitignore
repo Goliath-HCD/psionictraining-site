@@ -1,0 +1,9 @@
+.vercel
+.DS_Store
+
+# One-off local push helper scripts (the OpenClaw-era workflow) — do not commit
+*.command
+
+# Cowork edit backups (safe to delete manually)
+*.bak
+*.bak-*
