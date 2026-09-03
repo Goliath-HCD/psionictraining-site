@@ -2114,7 +2114,55 @@
     </div>
   </section>
 
-  <div id="newsletter" style="scroll-margin-top:60px;"></div>
+  <!-- Newsletter (MailerLite embed-only form; no Universal script — see note in <head>) -->
+  <section class="newsletter-section" id="newsletter" style="scroll-margin-top:60px;padding:8px 0 56px;">
+    <div class="container">
+      <div class="fade-in" style="max-width:560px;margin:0 auto;padding:36px 28px;border:1px solid var(--border);border-radius:16px;background:var(--surface);text-align:center;">
+        <div class="section-label" style="margin-bottom:10px;">Dispatch</div>
+        <h3 style="font-size:1.35rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;">Not ready to train yet?</h3>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.6;max-width:440px;margin:0 auto 22px;">Get the occasional dispatch: declassified case files, new drills, and what the data is showing. No spam.</p>
+        <form id="ml-newsletter-form" class="email-form" action="https://assets.mailerlite.com/jsonp/2348934/forms/197589709603473326/subscribe" method="post" novalidate>
+          <input type="email" name="fields[email]" placeholder="your@email.com" autocomplete="email" aria-label="Email address" required>
+          <input type="hidden" name="ml-submit" value="1">
+          <input type="hidden" name="anticsrf" value="true">
+          <button type="submit" id="ml-newsletter-btn">Keep me posted</button>
+        </form>
+        <p id="ml-newsletter-success" class="form-note" hidden style="color:var(--green);font-size:14px;">You're on the list. Watch for the next dispatch.</p>
+        <p id="ml-newsletter-error" class="form-note" hidden style="color:#f87171;">Something went wrong. Please try again.</p>
+        <p class="form-note">Unsubscribe any time. We never share your email.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // MailerLite embedded form (account 2348934, form Jz2m8Q / "Psionic Training - Interested")
+    (function () {
+      var form = document.getElementById('ml-newsletter-form');
+      if (!form) return;
+      var btn = document.getElementById('ml-newsletter-btn');
+      var ok = document.getElementById('ml-newsletter-success');
+      var err = document.getElementById('ml-newsletter-error');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.querySelector('input[type="email"]');
+        if (!email.value || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) { email.focus(); return; }
+        ok.hidden = true; err.hidden = true;
+        btn.disabled = true; btn.textContent = 'Sending…';
+        fetch(form.action, { method: 'POST', body: new FormData(form) })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data && data.success) {
+              form.style.display = 'none';
+              ok.hidden = false;
+            } else {
+              err.hidden = false;
+            }
+          })
+          .catch(function () { err.hidden = false; })
+          .finally(function () { btn.disabled = false; btn.textContent = 'Keep me posted'; });
+      });
+    })();
+  </script>
 
   <!-- CTA -->
   <section class="cta-section" id="signup" style="border-top:1px solid var(--border);">
@@ -2418,5 +2466,6 @@
     }
   </script>
 
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
